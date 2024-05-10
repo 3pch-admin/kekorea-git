@@ -1,0 +1,59 @@
+1. 서비스 등록
+	- Shell -> xconfmanager -t codebase/wt.properties -s wt.services.service.100000=e3ps.org.service.OrgService/e3ps.org.service.StandardOrgService -p
+	- Shell -> xconfmanager -t codebase/wt.properties -s wt.services.service.11000=e3ps.event.EventService/e3ps.event.StandardEventService -p
+
+2. 컨트롤러 세팅 및 tiles 세팅
+	- codebase/config/mvc/custom.xml 오픈
+	<context:component-scan base-package="e3ps">
+		<context:include-filter type="regex" expression="(service|controller)\..*" />
+	</context:component-scan>
+	
+	<!-- tiles setting -->
+	<bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+		<property name="order" value="1"></property>
+	</bean>
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/config/tiles/layout.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+3. mvc.xml JackSon 추가
+	- codebase/config/mvc/mvc.xml 오픈
+	<!-- Jackson -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes" value="application/json" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>	
+	
+4. ResourceBuild 실행
+	- tools bundle -Dbundle.input=e3ps.admin.commonCode.** -Dbundle.buildLocales=true
+	- tools bundle -Dbundle.input=e3ps.admin.numberRuleCode.** -Dbundle.buildLocales=true
+	- tools bundle -Dbundle.input=e3ps.admin.configSheetCode.** -Dbundle.buildLocales=true
+	- tools bundle -Dbundle.input=e3ps.admin.specCode.** -Dbundle.buildLocales=true
+
+5. State ResourceBuild 실행
+	- Shell -> ResourceBuild.bat wt.lifecycle.**
+	- Shell -> ResourceBuild.bat wt.doc.**
+	- codebase -> ant -f MakeJar.xml
+
+6. 세션 타입 아웃 변경
+	- codebase/WEB-INF/web.xml
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>	
+
+7. 큐 생성
+	1) 도면일람표 큐 생성
+		- 사이트 -> 대기열 관리 -> WorkOrderProcessQueue 프로세스 큐 생성                       
+	3) PDF 큐 생성
+		- 사이트 > 유틸리티 > 대기열관리 > PdfProcessQueue 프로세스 큐 생성
+		- 사이트 > 유틸리티 > 대기열관리 > ConvertToPdfProcessQueue 프로세스 큐 생성
+	

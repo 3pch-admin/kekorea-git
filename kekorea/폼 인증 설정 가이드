@@ -1,0 +1,125 @@
+1. wt.propertes 변경
+	- Shell > xconfmanager -t codebase/wt.properties -s wt.auth.form.enabled=true
+	- Shell > xconfmanager -t codebase/wt.properties -s wt.auth.form.submitUrl=$(wt.server.codebase)/login/j_security_check
+	- Shell > xconfmanager -p
+	
+2. Apache 설정 변경 및 ajpWorker 설정 	 
+	- false 폼인증 해제, true 폼 인증
+	- HTTPServer > conf > templates > webapp > webAppAJPConf.template 오픈
+	- JkMount /@@WEB_APP_NAME@@/plm/* @@AJP_WORKER_NAME@@ 추가 
+	- Shell > HTTPServer > ant -f webAppConfig.xml regenWebAppConf -DappName=Windchill -DprotocolAuthOnly=true	
+
+3. WEB-INF 패턴 추가
+	- gwt 검색 후 아래 라인
+	- <url-pattern>/plm/*</url-pattern> 추가
+	
+4. WEB-INF 제일 아래 부분 위 추가
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Windchill</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+ 	<security-constraint>
+    <display-name>Authenticated access constraint</display-name>
+    	<web-resource-collection>
+        <web-resource-name>Authenticated resources</web-resource-name>
+		<description>Resources requiring authentication for proper operation (and allowing form-based authentication)</description>
+            <url-pattern>/app/*</url-pattern>
+			<url-pattern>/com/ptc/wvs/client/jsp/*</url-pattern>
+            <url-pattern>/gwt/*</url-pattern>
+            <url-pattern>/infoengine/*</url-pattern>
+            <url-pattern>/install/jsp/*</url-pattern>
+            <url-pattern>/netmarkets/jsp/*</url-pattern>
+            <url-pattern>/pdmlink/jsp/*</url-pattern>
+            <url-pattern>/ptc1/*</url-pattern>
+            <url-pattern>/rs/jsp/jsp/*</url-pattern>
+            <url-pattern>/servlet/ActionsMenu/*</url-pattern>
+            <url-pattern>/servlet/AttachmentsDownloadAppletServlet/*</url-pattern>
+            <url-pattern>/servlet/AttachmentsDownloadDirectionServlet/*</url-pattern>
+            <url-pattern>/servlet/AttachmentsEditServlet/*</url-pattern>
+            <url-pattern>/servlet/AttachmentsURLRedirectServlet/*</url-pattern>
+            <url-pattern>/servlet/DTIActionServlet/*</url-pattern>
+            <url-pattern>/servlet/FileDirectory/*</url-pattern>
+            <url-pattern>/servlet/GetCacheDescriptorServlet/*</url-pattern>
+            <url-pattern>/servlet/IE/*</url-pattern>
+            <url-pattern>/servlet/Navigation/*</url-pattern>
+            <url-pattern>/servlet/PlanTimelineFeed/*</url-pattern>
+            <url-pattern>/servlet/ProcessOverviewDownloadServlet/*</url-pattern>
+            <url-pattern>/servlet/RPC/*</url-pattern>
+            <url-pattern>/servlet/RSURLServlet/*</url-pattern>
+            <url-pattern>/servlet/RecentList/*</url-pattern>
+            <url-pattern>/servlet/RememberDownloadPathServlet/*</url-pattern>
+            <url-pattern>/servlet/SimpleTaskDispatcher/*</url-pattern>
+            <url-pattern>/servlet/SuggestServlet/*</url-pattern>
+            <url-pattern>/servlet/TimelineHistoryController/*</url-pattern>
+            <url-pattern>/servlet/TypeBasedIncludeServlet/*</url-pattern>
+            <url-pattern>/servlet/UIValidationAJAXServlet/*</url-pattern>
+            <url-pattern>/servlet/WindchillAuthGW/*</url-pattern>
+            <url-pattern>/servlet/WindchillSAGW/*</url-pattern>
+            <url-pattern>/servlet/WizardServlet/*</url-pattern>
+            <url-pattern>/servlet/com.ptc.ddl.servlet.ptcxslservlet.PTCXSLServlet/*</url-pattern>
+            <url-pattern>/servlet/com.ptc.ddl.servlet.speced.SpecEditorServlet/*</url-pattern>
+            <url-pattern>/servlet/com.ptc.ddl.servlet.speced.XMLEngineServlet/*</url-pattern>
+            <url-pattern>/servlet/navigation_list/*</url-pattern>
+            <url-pattern>/servlet/pjldownloadhelper/*</url-pattern>
+            <url-pattern>/wtcore/jsp/*</url-pattern>
+		</web-resource-collection>
+     	<auth-constraint>
+			<description>Allow any valid, authenticated user</description>
+			<role-name>valid-user</role-name>
+		</auth-constraint>
+	</security-constraint>
+    <security-constraint>
+    <display-name>Anonymous access constraint</display-name>
+    	<web-resource-collection>
+        <web-resource-name>Anonymously accessible resources</web-resource-name>
+		<description>Resources which must not require form-based authentication for proper operation</description>
+			<url-pattern>/login/*</url-pattern>
+            <url-pattern>/protocolAuth/*</url-pattern>
+            <url-pattern>/servlet/JNLPGeneratorServlet/*</url-pattern>
+            <url-pattern>/servlet/ProwtGW/*</url-pattern>
+            <url-pattern>/servlet/WindchillGW/*</url-pattern>
+            <url-pattern>/servlet/XML4Cognos/*</url-pattern>
+            <url-pattern>/trustedAuth/*</url-pattern>
+            <url-pattern>/wt.properties/*</url-pattern>
+            <url-pattern>/wt/jmx/connection/getLocalJmxUrl.jsp/*</url-pattern>
+            <url-pattern>/wtcore/getWtProperties.jsp/*</url-pattern>
+            <url-pattern>/wtcore/test/*</url-pattern>
+            <url-pattern>/wtcore/test.html/*</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+	<login-config>
+	<auth-method>FORM</auth-method>
+	<form-login-config>
+		<form-login-page>/login/login.jsp</form-login-page>
+		<form-error-page>/login/loginFailed.jsp</form-error-page>
+	</form-login-config>
+	</login-config>
+	<security-role>
+		<description>Any valid user</description>
+		<role-name>valid-user</role-name>
+	</security-role>
+	
+5. tomcat 설정 변경
+	- LDAP 정보에 맞게 값을 변경 하여 사용한다.
+	<Realm className="org.apache.catalina.realm.CombinedRealm">
+		<Realm className="org.apache.catalina.realm.JNDIRealm" connectionURL="ldap://plm.kekorea.co.kr:389/ou=people,cn=EnterpriseLdap,cn=Windchill_11.1,o=ptc"            
+                       connectionName="cn=Manager" connectionPassword="ldapadmin" userSubtree="true" userSearch="(uid={0})" commonRole="valid-user"/>	
+        <Realm className="org.apache.catalina.realm.JNDIRealm" connectionURL="ldap://plm.kekorea.co.kr:389/ou=people,cn=AdministrativeLdap,cn=Windchill_11.1,o=ptc"            
+                       connectionName="cn=Manager" connectionPassword="ldapadmin" userSubtree="true" userSearch="(uid={0})" commonRole="valid-user"/>
+	</Realm>
+	
+6. DocumentRoot 변경
+	- HTTPServer -> conf -> httpd.conf 오픈
+	- DocumentRoot 검색
+	- 기존 경로 -> DocumentRoot "D:/ptc/Windchill_11.1/Windchill/codebase"
+	- Apache 재시작	   		 								

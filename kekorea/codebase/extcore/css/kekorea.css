@@ -1,0 +1,671 @@
+@charset "UTF-8";
+
+html {
+	font-size: 14px;
+	font-family: "Noto Sans KR";
+}
+
+/** 테이블 공통 CSS **/
+table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+/** 컨테이너 테이블 CSS 트리전용 **/
+table.container-table td:first-child {
+	vertical-align: top;
+}
+
+/** 그리드 인클루드용 CSS **/
+div.include {
+	margin-top: 3px;
+	text-indent: 5px;
+}
+
+
+
+
+/** margin 공통 CSS **/
+.mt5 {
+	margin-top: 5px;
+}
+
+.mb5 {
+	margin-bottom: 5px;
+}
+
+.ml5 {
+	margin-left: 5px;
+}
+
+.mr5 {
+	margin-right: 5px;
+}
+
+/** padding 공통 CSS **/
+.pt5 {
+	padding-top: 5px;
+}
+
+.pb5 {
+	padding-bottom: 5px;
+}
+
+.pl5 {
+	padding-left: 5px;
+}
+
+.pr5 {
+	padding-right: 5px;
+}
+
+/** border 공통 CSS **/
+.tb-none {
+	border-top: none !important;
+}
+
+.rb-none {
+	border-right: none !important;
+	white-space: nowrap;
+}
+
+.lb-none {
+	border-left: none !important;
+	white-space: nowrap;
+}
+
+.bb-none {
+	border-bottom: none !important;
+}
+
+/** border 공통 CSS **/
+.tb {
+	border-top: 1px solid #a6a6a6;
+}
+
+.rb {
+	border-right: 1px solid #a6a6a6;
+	white-space: nowrap;
+}
+
+.lb {
+	border-left: 1px solid #a6a6a6;
+	white-space: nowrap;
+}
+
+.bb {
+	border-bottom: 1px solid #a6a6a6;
+}
+
+/** 검색 테이블 CSS **/
+table.search-table {
+	width: 100%;
+	border-top: 2px solid #86bff9;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+table.search-table th {
+	background-color: #f2f2f2;
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	padding-bottom: 4px;
+	min-width: 100px;
+}
+
+table.search-table td {
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	border-right: 1px solid #a6a6a6;
+	white-space: nowrap;
+	/* 	text-indent: 5px; */
+}
+
+table.search-table input[type='text']:read-only {
+	background-color: #dedede !important;
+}
+
+/** 버튼 테이블 CSS **/
+table.button-table {
+	width: 100%;
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+table.button-table #_psize {
+	width: 60px;
+}
+
+table.button-table img {
+	position: relative;
+	top: 3px;
+	cursor: pointer;
+}
+
+/** TD 태그 CSS **/
+td.left {
+	text-align: left;
+}
+
+td.center {
+	text-align: center;
+}
+
+td.right {
+	text-align: right;
+}
+
+td.indent5 {
+	text-indent: 5px;
+	white-space: nowrap;
+}
+
+td.indent10 {
+	text-indent: 10px;
+}
+
+td.underline {
+	color: blue !important;
+	cursor: pointer;
+}
+
+td.underline:hover {
+	text-decoration: underline;
+}
+
+td.cursor {
+	cursor: pointer;
+}
+
+/** 넓이 CSS **/
+.width-100 {
+	width: 100px;
+}
+
+.width-200 {
+	width: 200px;
+}
+
+.width-300 {
+	width: 300px;
+}
+
+.width-400 {
+	width: 400px;
+}
+
+.width-500 {
+	width: 500px;
+}
+
+.width-600 {
+	width: 600px;
+}
+
+.width-700 {
+	width: 700px;
+}
+
+.width-800 {
+	width: 800px;
+}
+
+/** 버튼 꾸밈 CSS **/
+input[type="button"] {
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	height: 24px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 26px !important;
+	-webkit-line-height: 26px !important;
+	padding: 0px 10px 25px 10px;
+	border: 1px solid #00c192;
+	background: #00c192;
+}
+
+input[type="button"].red {
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	height: 24px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 20px;
+	padding: 0px 10px 25px 10px;
+	border: 1px solid #00c192;
+	background: #ff5555;
+}
+
+input[type="button"].blue {
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	height: 24px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 20px;
+	padding: 0px 10px 25px 10px;
+	border: 1px solid #00c192;
+	background: #3f3ff1;
+}
+
+input[type="button"].orange {
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	height: 24px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 20px;
+	padding: 0px 10px 25px 10px;
+	border: 1px solid #00c192;
+	background: #ff7f00;
+}
+
+/** 로딩 레이어 CSS **/
+div#loading {
+	z-index: 999999;
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/** 등록 테이블 CSS **/
+table.create-table {
+	width: 100%;
+	border-top: 2px solid #86bff9;
+	font-size: 12px;
+}
+
+table.create-table th {
+	background-color: #f2f2f2;
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	/* 	border-left: 1px solid #a6a6a6; */
+	padding-bottom: 4px;
+}
+
+table.create-table td {
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	border-right: 1px solid #a6a6a6;
+}
+
+table.create-table th.req {
+	color: red;
+	font-weight: 800;
+	white-space: nowrap;
+}
+
+table.create-table textarea {
+	width: calc(100% - 15px);
+	border: 1px solid #a6a6a6;
+	margin-top: 2px;
+	font-size: 14px;
+	font-family: inherit;
+}
+
+/** textarea box CSS **/
+textarea {
+	resize: none;
+}
+
+/** select box CSS **/
+select.width-100 {
+	width: 100px;
+}
+
+select.width-200 {
+	width: 200px;
+}
+
+select.width-300 {
+	width: 300px;
+}
+
+/** upload queue box CSS **/
+#uploadQueueBox {
+	width: calc(100% - 15px);
+	margin: 3px 5px 3px 5px;
+}
+
+#secondary_layer, #primary_layer {
+	margin-top: 3px;
+}
+
+/** anchor CSS **/
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: blue;
+}
+
+/** iframe CSS **/
+iframe {
+	border: none;
+	width: 100%;
+}
+
+/** input[type=text] CSS **/
+input[type=text].width-200 {
+	width: 200px;
+}
+
+input[type=text].width-300 {
+	width: 300px;
+}
+
+input[type=text].width-400 {
+	width: 400px;
+}
+
+input[type=text].width-500 {
+	width: 500px;
+}
+
+/** axicon css 재정의 **/
+i.axi-close2 {
+	font-size: 20px;
+	position: relative;
+	top: 4px;
+	cursor: pointer;
+}
+
+/** 뷰 테이블 CSS **/
+table.view-table {
+	width: 100%;
+	border-top: 2px solid #86bff9;
+	font-size: 12px;
+}
+
+table.view-table th {
+	background-color: #f2f2f2;
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	/* 	padding-bottom: 4px; */
+}
+
+table.view-table td {
+	height: 30px;
+	border-bottom: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	border-right: 1px solid #a6a6a6;
+}
+
+table.view-table td a {
+	color: blue !important;
+}
+
+table.view-table textarea {
+	width: calc(100% - 15px);
+	border: 1px solid #a6a6a6;
+	margin-top: 3px;
+	font-size: 14px;
+	font-family: inherit;
+}
+
+/** A link CSS **/
+a {
+	text-decoration: none !important;
+	/* 	color: black !Important; */
+}
+
+a:hover {
+	text-decoration: underline !important;
+	color: blue !important;
+}
+
+/** 컨텍스트 메뉴 재 정의 CSS **/
+.my-column {
+	text-align: right;
+}
+
+#headerMenu {
+	position: absolute;
+	display: none;
+	z-index: 100;
+}
+
+.ui-menu {
+	width: 250px;
+	font-size: 12px;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ui-widget-header {
+	padding: 0.2em;
+}
+
+/** PASSWORD CSS **/
+.create-table td input[type='password'] {
+	border: 1px solid #a6a6a6;
+	background: #fff;
+	color: #333;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 14px;
+	/* 	height: 15px; */
+	padding: 5px;
+}
+
+
+/** INPUT CSS **/
+.create-table td input[type='text'], .search-table td input[type='text'], .button-table td input[type='text'], .view-table td input[type='text'] {
+	border: 1px solid #a6a6a6;
+	background: #fff;
+	color: #333;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 14px;
+	/* 	height: 15px; */
+	padding: 5px;
+}
+
+input[type='text']:read-only {
+	background-color: #ebebeb !important;
+}
+
+.create-table td input[type='number'], .search-table td input[type='number'] {
+	border: 1px solid #a6a6a6;
+	background: #fff;
+	color: #333;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 14px;
+	height: 15px;
+	padding: 5px;
+}
+
+/** SELECT CSS **/
+.create-table td select, .search-table td select, .view-table td select {
+	-webkit-border-radius: 2px 5px 5px;
+	-moz-border-radius: 2px 5px 5px;
+	border-radius: 2px 5px 5px;
+	font-size: 12px;
+	height: 26px;
+	line-height: 26px;
+	background: #fff;
+	margin: 0 auto;
+	box-sizing: content-box;
+	border: 1px solid #a6a6a6;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.button-table td select {
+	-webkit-border-radius: 2px 5px 5px;
+	-moz-border-radius: 2px 5px 5px;
+	border-radius: 2px 5px 5px;
+	font-size: 12px;
+	height: 26px;
+	line-height: 26px;
+	background: #fff;
+	margin: 0 auto;
+	box-sizing: content-box;
+	border: 1px solid #a6a6a6;
+	padding: 0;
+	vertical-align: middle;
+	position: relative;
+	bottom: 2px;
+}
+
+/** 헤더 아이콘 및 텍스트 **/
+div.header img {
+	position: relative;
+	top: 3px;
+}
+
+div.header {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-weight: 800;
+	font-size: 12px;
+}
+
+div.info-header {
+	margin: 5px 0px 5px 0px;
+	font-size: 12px;
+}
+
+div.info-header img {
+	position: relative;
+	top: 3px;
+}
+
+/** 결재 진행상태 **/
+img.line {
+	position: relative;
+}
+
+img.dot {
+	height: 23px;
+	width: 11px;
+}
+
+span.text {
+	position: relative;
+	display: inline-block;
+	top: 1px;
+}
+
+span.inactive {
+	/* 	z-index: 99999; */
+	position: relative;
+	text-align: center !important;
+	height: 23px;
+	display: inline-block;
+	bottom: 9px;
+	font-size: 12px;
+	background-image: url("/Windchill/extcore/images/process-nbg.gif");
+}
+
+span.active {
+	/* 	z-index: 99999; */
+	position: relative;
+	text-align: center !important;
+	height: 23px;
+	display: inline-block;
+	bottom: 9px;
+	font-size: 12px;
+	background-image: url("/Windchill/extcore/images/process-sbg.gif");
+}
+
+/** 로딩 레이어 CSS **/
+div#loading_layer {
+	z-index: 9999999;
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/** AUI TD 왼쪽 정렬 **/
+.aui-left {
+	text-align: left !important;
+	text-indent: 10px !important;
+	/* 	color: blue !important; */
+}
+
+.aui-grid-renderer-base>a {
+	color: blue !important;
+}
+
+/** 헤더 위치 표시 CSS **/
+span#subLoc {
+	font-weight: 800;
+}
+
+/** 프로젝트 담당자 수정 아이콘 **/
+img.edit {
+	position: relative;
+	top: 2px;
+	cursor: pointer;
+}
+
+.search-table img.delete {
+	position: relative;
+	top: 3px;
+	cursor: pointer;
+}
+
+/** 메뉴얼 동영상 모달 CSS **/
+.video-modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.AXScrollSmall {
+	position: relative;
+	overflow: hidden;
+	height: 300px !important;
+}
