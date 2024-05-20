@@ -233,3 +233,13 @@
 	- 사이트 -> 유틸리티 -> 시각화 구성관리
 	- 구성작성 -> PDF 생성 -> 클릭 -> 구성에 파일 추가 
 	- additional_file_type_publishrule.xml 추가
+	
+19. 객체 초기화 설정
+	- 사이트 > 유틸리티 > 객체 초기화 규칙 관리 
+	- loadFiles > init 아래 있는 xml 파일
+	- doc_rule.xml > Document > 편집
+	- epm_rule.xml > EPMDocument > 편집
+	- part_rule.xml > Part > 편집
+
+20. 객체 버전 변경
+	- 객체 초기화 xml 에서 버전 제일 뒷부분 .InSpec 추가		
