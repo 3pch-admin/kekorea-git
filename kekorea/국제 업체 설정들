@@ -1,3 +1,7 @@
+0. Apache 서비스 등록
+	- Shell -> HTTPServer 홈으로 이동
+	- ant -f config.xml installService -DserviceName=Apache2.4 실행
+
 1. 서비스 등록
 	- Shell -> xconfmanager -t codebase/wt.properties -s wt.services.service.100000=e3ps.org.service.OrgService/e3ps.org.service.StandardOrgService -p
 	- Shell -> xconfmanager -t codebase/wt.properties -s wt.services.service.11000=e3ps.event.EventService/e3ps.event.StandardEventService -p
@@ -39,7 +43,7 @@
 	- tools bundle -Dbundle.input=e3ps.admin.configSheetCode.** -Dbundle.buildLocales=true
 	- tools bundle -Dbundle.input=e3ps.admin.specCode.** -Dbundle.buildLocales=true
 
-5. State ResourceBuild 실행
+5. 상태값 추가, 문서유형 추가 ResourceBuild 실행
 	- Shell -> ResourceBuild.bat wt.lifecycle.**
 	- Shell -> ResourceBuild.bat wt.doc.**
 	- codebase -> ant -f MakeJar.xml
@@ -56,4 +60,176 @@
 	3) PDF 큐 생성
 		- 사이트 > 유틸리티 > 대기열관리 > PdfProcessQueue 프로세스 큐 생성
 		- 사이트 > 유틸리티 > 대기열관리 > ConvertToPdfProcessQueue 프로세스 큐 생성
+		
 	
+8. kekorea.xconf 파일 수정
+	<!-- Form Base Auth -->
+    <Property name="wt.auth.form.enabled" overridable="true"
+                 targetFile="codebase/wt.properties"
+                 value="true"/>
+    <Property name="wt.auth.handler" overridable="true"
+                 targetFile="codebase/wt.properties"
+                 value="wt.httpgw.HTTPAuthentication"/>             
+   
+    <!-- Vault -->
+    <Property name="wt.fv.useVaultsForAllContent" overridable="true"
+                 targetFile="codebase/wt.properties"
+                 value="true"/>   
+     <Property name="wt.fv.useFvFileThreshold" overridable="true"
+                  targetFile="codebase/wt.properties"
+  	              value="true"/>                
+     <Property name="wt.fv.fvFileThreshold" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="20000"/>
+                  
+     <!-- Service -->          
+     <Property name="wt.services.service.90000" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="e3ps.org.service.OrgService/e3ps.org.service.StandardOrgService"/>
+     <Property name="wt.services.service.91000" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="e3ps.event.EventService/e3ps.event.StandardEventService"/>
+   
+     <!-- Method Server Setting -->
+     <Property name="wt.manager.monitor.start.MethodServer" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="1"/>  
+     <Property name="wt.manager.monitor.start.BackgroundMethodServer" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="1"/>
+     <Property name="wt.manager.monitor.services" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="MethodServer BackgroundMethodServer"/>       
+     <Property name="wt.method.maxHeap" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="2048"/>                 
+     <Property name="wt.method.minHeap" overridable="true"
+                  targetFile="codebase/wt.properties"
+                   value="2048"/>                 
+
+	  <!-- Server Manager -->
+     <Property name="wt.manager.maxHeap" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="1024"/>                 
+     <Property name="wt.manager.minHeap" overridable="true"
+                  targetFile="codebase/wt.properties"
+                  value="512"/>     	             
+             
+	  <!-- Time Zone -->
+	  <Property name="wt.method.timezone" overridable="true"
+	               targetFile="codebase/wt.properties"
+	               value="Asia/Seoul"/>
+                                               
+	  <!-- Version Setting -->
+	  <Property name="wt.series.HarvardSeries.InSpec.delimiter" overridable="true"
+	               targetFile="codebase/wt.properties"
+	               value="."/>
+	  <Property name="wt.series.HarvardSeries.InSpec.depth" overridable="true"
+	               targetFile="codebase/wt.properties"
+	               value="16"/>
+	  <Property name="wt.series.HarvardSeries.InSpec.level.1" overridable="true"
+	               targetFile="codebase/wt.properties"
+	               value="wt.series.IntegerSeries"/>
+	  <Property name="wt.series.HarvardSeries.seriesNames" overridable="true"
+	               targetFile="codebase/wt.properties"
+	               value="InSpec"/>
+             
+	  <!-- wvs.properties -->
+	  <Property name="publish.usesPublishRules" overridable="true"
+	               targetFile="codebase/WEB-INF/wvs/wvs.properties"
+	               value="ARBORTEXT PROE"/>
+             
+	  <!-- after loader -->
+      <Property name="publish.afterloadermethod" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="com.ptc.wvs.util.AfterEDRloader/copyToEPM"/>
+      <Property name="publish.afterloadermethod.copyToEPM.Filext" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="dwg zip"/>
+      <Property name="publish.afterloadermethod.copyToEPM.downloadToLocal" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="true"/>	             	   
+             
+	  <!-- KEK PROJECT SCHEDULE -->
+      <Property name="jobTypes6" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="kekJob"/>      
+      <Property name="kekJob.icon" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="netmarkets/images/repair_failure.gif"/>   
+      <Property name="kekJob.resourceBase" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="com.ptc.wvs.common.util.JobTypeResource"/>   
+      <Property name="kekJob.scheduledProcessorClass" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="e3ps.project.schedule.KEKScheduleProcessor"/>
+             
+      <!-- Add Schedule List -->
+      <Property name="schedulejobs30" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="KEK_PROJECT_SCHEDULE_BATCH"/>   
+      <Property name="KEK_PROJECT_SCHEDULE_BATCH.class" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="e3ps.project.schedule.KEKScheduleJobs"/>
+      <Property name="KEK_PROJECT_SCHEDULE_BATCH.description" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="KEK_PROJECT_SCHEDULE_BATCH"/>
+      <Property name="KEK_PROJECT_SCHEDULE_BATCH.enableOnContainers" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="true"/>
+      <Property name="KEK_PROJECT_SCHEDULE_BATCH.jobType" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="kekJob"/>   
+      <Property name="KEK_PROJECT_SCHEDULE_BATCH.method" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="startBatch"/>                                                                            		
+
+9. WTPart 컬럼 변경
+	- Shell -> ant -f tools.xml custom_column -Dgen.input=wt.part     
+	- UpgradeManager -cs 실행
+	- %WT_HOM%%\Upgrade\UpgradeReports\UpgradeDatabaseSchema 폴더에서 나온 텍스트 파일 오픈
+	- WTParMaster와 관련되서 나온 SQL문 실행
+	
+10. WVS After Service 등록
+	- Shell -> src/com/ptc/wvs/util 이동
+	- javac -classpath %CLASSPATH%;%WT_HOME%\srclib\tool\Annotations.jar -d %wt_home%\codebase AfterEDRloader.java 실행
+	
+11. 작업 스케줄러 등록
+	- Shell -> src/com/ptc/wvs/common/util 이동
+	- javac -classpath %CLASSPATH%;%WT_HOME%\srclib\tool\Annotations.jar -d %wt_home%\codebase JobTypeResource.java 실행
+	- _ko 파일 경우 에디터 파일 오픈하여 파일인코딩 ANSI 로 변경후 실행
+	- javac -classpath %CLASSPATH%;%WT_HOME%\srclib\tool\Annotations.jar -d %wt_home%\codebase JobTypeResource_ko.java 실행		
+
+12. AUIGrid 라이센스
+	- 개발과 운영 라이센스가 다르기에 실제 서버에서 파일명을 수정하여 적용 하도록 한다.
+	- 개발에 반영시 운영 라이센스 삭제 후 개발 라이센스 _dev를 제거해서 반영한다.
+	- codebase/extcore/component/AUIGrid/AUIGrid.js - 운영
+	- codebase/extcore/component/AUIGrid/AUIGridLicense.js - 운영
+	- codebase/extcore/component/AUIGrid/AUIGrid_dev.js - 개발운영
+	- codebase/extcore/component/AUIGrid/AUIGridLicense_dev.js - 개발운영
+	
+13. 개발 운영 WEB-INF/web.xml 
+	- 개발 반영시 dev 적힌 파일을 반영한다.
+	- 파일 싱크 미적용으로 수동으로 서버에 다이렉트 반영
+
+14. 개발 운영 httpd.conf
+	- 개발 반영시 dev 적힌 파일을 반영한다.
+	- 파일 싱크 미적용으로 수동으로 서버에 다이렉트 반영 
+
+15. tomcat > conf > Catalina > localhost > Windchill.xml
+	- 개발 반영시 dev 적힌 파일을 반영한다.
+	- 파일 싱크 미적용으로 수동으로 서버에 다이렉트 반영
+	
+16. auth.properties, site.xconf, kekorea.xconf, codebase/WEB-INF/conf/wvs.properties
+	- 개발 반영시 dev 적힌 파일을 반영한다.
+	- 파일 싱크 미적용으로 수동으로 서버에 다이렉트 반영
+
+17. tomcat > conf > web.xml
+	- development 검색	
+	- <param-value>false</param-value> 부분을 true 로 변경
+	- jsp 실시간 반영되도록 하는 내용
+	
+18. PDF 생성 XML 설정
+	- 사이트 -> 유틸리티 -> 시각화 구성관리
+	- 구성작성 -> PDF 생성 -> 클릭 -> 구성에 파일 추가 
+	- additional_file_type_publishrule.xml 추가

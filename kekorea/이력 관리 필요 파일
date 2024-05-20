@@ -1,0 +1,10 @@
+1. 이력 관리 필요 대상 파일
+	1) site.xconf
+	2) kekorea.xxconf
+	3) auth.properties
+	4) codebase/WEB-INF/conf/wvs.properties
+	5) codebase/WEB-INF/web.xml
+	6) tomcat/Catalina/locathost/Windchill.xml
+	7) HTTPServer/conf/httpd.conf
+	8) codebase/extcore/component/AUIGrid/AUIGrid.js
+	9) codebase/extcore/component/AUIGrid/AUIGridLicense.js
