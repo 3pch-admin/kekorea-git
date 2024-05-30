@@ -20,7 +20,8 @@ String end = (String) request.getAttribute("end");
 </head>
 <body>
 	<form>
-		<input type="hidden" name="sessionid" id="sessionid"><input type="hidden" name="lastNum" id="lastNum">
+		<input type="hidden" name="sessionid" id="sessionid">
+		<input type="hidden" name="lastNum" id="lastNum">
 		<input type="hidden" name="curPage" id="curPage">
 
 		<table class="search-table">
@@ -49,7 +50,6 @@ String end = (String) request.getAttribute("end");
 					<select name="projectType" id="projectType" class="width-200">
 						<option value="">선택</option>
 						<%
-						
 						for (Map projectType : projectTypes) {
 						%>
 						<option value="<%=projectType.get("key")%>"><%=projectType.get("value")%></option>
@@ -63,27 +63,36 @@ String end = (String) request.getAttribute("end");
 				<th>막종</th>
 				<td colspan="5">
 					&nbsp;
+					<div class="pretty p-switch">
+						<input type="checkbox" name="all" id="all" checked="checked">
+						<div class="state p-success">
+							<label>
+								<b>전체선택</b>
+							</label>
+						</div>
+					</div>					
 					<%
-					int idx=1;
+					int idx = 1;
 					for (CommonCode mak : maks) {
 					%>
 					<div class="pretty p-switch">
 						<input type="checkbox" name="mak" value="<%=mak.getCode()%>" checked="checked">
 						<div class="state p-success">
 							<label>
-								<b><%=mak.getName()%>&#9;</b>
+								<b><%=mak.getName()%>
+								</b>
 							</label>
 						</div>
 					</div>
 					<%
-					if( idx%15==0){
+					if (idx % 15 == 0) {
 						out.println("<br>&nbsp;");
 					}
 					idx++;
 					}
 					%>
 					<!--  <input type="button" value="ccc" onclick="maksUnchk();"> -->
-					
+
 				</td>
 			</tr>
 		</table>
@@ -508,6 +517,20 @@ String end = (String) request.getAttribute("end");
 					}
 				}
 			});
+			
+			const all = document.getElementById("all");
+			const maks = document.getElementsByName("mak");
+			all.addEventListener('change', (event) => {
+		        if (event.target.checked) {
+		        	for(let i=0; i<maks.length; i++) {
+		        		maks[i].checked = true;
+		        	}
+		        } else {
+		        	for(let i=0; i<maks.length; i++) {
+		        		maks[i].checked = false;
+		        	}
+		        }
+		    });
 		</script>
 	</form>
 </body>
