@@ -29,7 +29,6 @@ import e3ps.doc.meeting.MeetingTemplate;
 import e3ps.doc.meeting.dto.MeetingDTO;
 import e3ps.doc.meeting.dto.MeetingTemplateDTO;
 import e3ps.doc.meeting.service.MeetingHelper;
-import e3ps.doc.service.DocumentHelper;
 import e3ps.project.Project;
 import e3ps.project.task.Task;
 import e3ps.project.template.service.TemplateHelper;

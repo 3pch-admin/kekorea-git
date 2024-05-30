@@ -7,7 +7,6 @@ import java.util.Map;
 
 import e3ps.bom.partlist.PartListMaster;
 import e3ps.bom.partlist.PartListMasterProjectLink;
-import e3ps.bom.tbom.TBOMMasterProjectLink;
 import e3ps.common.util.CommonUtils;
 import e3ps.project.Project;
 import lombok.Getter;
@@ -89,29 +88,29 @@ public class PartListDTO {
 		setModifiedDate(master.getModifyTimestamp());
 		setModifiedDate_txt(CommonUtils.getPersistableTime(master.getModifyTimestamp()));
 		setEngType(master.getEngType());
-		
-		QueryResult qr2= PersistenceHelper.manager.navigate(master, "project", PartListMasterProjectLink.class);
+
+		QueryResult qr2 = PersistenceHelper.manager.navigate(master, "project", PartListMasterProjectLink.class);
 		String reKekNumber = "";
 		String reKeNumber = "";
-		
-		while(qr2.hasMoreElements()) {
+
+		while (qr2.hasMoreElements()) {
 			Project pp = (Project) qr2.nextElement();
-	
-			if( !"".equals(reKekNumber)) {
-				reKekNumber += ","+pp.getKekNumber();
-			}else {
+
+			if (!"".equals(reKekNumber)) {
+				reKekNumber += "," + pp.getKekNumber();
+			} else {
 				reKekNumber = pp.getKekNumber();
 			}
-			
-			if( !"".equals(reKeNumber)) {
-				reKeNumber += ","+pp.getKeNumber();
-			}else {
+
+			if (!"".equals(reKeNumber)) {
+				reKeNumber += "," + pp.getKeNumber();
+			} else {
 				reKeNumber = pp.getKeNumber();
 			}
-		}	
+		}
 		setTotalKekNumber(reKekNumber);
 		setTotalKeNumber(reKeNumber);
-		
+
 	}
 
 	public PartListDTO(PartListMasterProjectLink link) throws Exception {

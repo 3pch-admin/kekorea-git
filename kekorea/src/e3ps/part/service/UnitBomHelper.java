@@ -40,8 +40,8 @@ public class UnitBomHelper {
 		String yPartName = (String) params.get("yPartName");
 
 		QuerySpec query = new QuerySpec();
-		SearchCondition sc = null;
-		ClassAttribute ca = null;
+//		SearchCondition sc = null;
+//		ClassAttribute ca = null;
 
 		int idx = query.appendClassList(UnitBom.class, true);
 		query.setAdvancedQueryEnabled(true);

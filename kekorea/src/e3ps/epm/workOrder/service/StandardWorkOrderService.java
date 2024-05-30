@@ -67,7 +67,7 @@ public class StandardWorkOrderService extends StandardManager implements WorkOrd
 		ArrayList<Map<String, String>> agreeRows = dto.getAgreeRows();
 		ArrayList<Map<String, String>> approvalRows = dto.getApprovalRows();
 		ArrayList<Map<String, String>> receiveRows = dto.getReceiveRows();
-		ArrayList<Map<String, String>> addRows11 = dto.getAddRows11();
+//		ArrayList<Map<String, String>> addRows11 = dto.getAddRows11();
 //		String number = addRows11.get(0).get("number");
 		ArrayList<String> secondarys = dto.getSecondarys();
 		String location = "/Default/프로젝트/" + workOrderType + "_도면일람표";

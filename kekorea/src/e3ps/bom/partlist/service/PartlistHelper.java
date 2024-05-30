@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import e3ps.admin.commonCode.CommonCode;
 import e3ps.bom.partlist.MasterDataLink;
 import e3ps.bom.partlist.PartListData;
 import e3ps.bom.partlist.PartListMaster;
@@ -49,14 +48,14 @@ public class PartlistHelper {
 		String state = (String) params.get("state");
 		String kekNumber = (String) params.get("kekNumber");
 		String keNumber = (String) params.get("keNumber");
-		String description = (String) params.get("description");
+//		String description = (String) params.get("description");
 		String engType = (String) params.get("engType");
 		String pdateFrom = (String) params.get("pdateFrom");
 		String pdateTo = (String) params.get("pdateTo");
-		String customer_name = (String) params.get("customer_name");
-		String install_name = (String) params.get("install_name");
-		String mak_name = (String) params.get("mak_name");
-		String detail_name = (String) params.get("detail_name");
+//		String customer_name = (String) params.get("customer_name");
+//		String install_name = (String) params.get("install_name");
+//		String mak_name = (String) params.get("mak_name");
+//		String detail_name = (String) params.get("detail_name");
 		String creatorOid = (String) params.get("creatorOid");
 		String createdFrom = (String) params.get("createdFrom");
 		String createdTo = (String) params.get("createdTo");
@@ -217,7 +216,7 @@ public class PartlistHelper {
 
 //			WTPart wtPart = PartHelper.manager.getWTPart(data.getPartNo());
 
-			String s = data.getPartNo();
+//			String s = data.getPartNo();
 
 			Map<String, Object> map = new HashMap<>();
 			map.put("check", "OK");

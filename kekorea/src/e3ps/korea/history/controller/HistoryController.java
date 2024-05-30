@@ -22,12 +22,10 @@ import e3ps.admin.specCode.service.SpecCodeHelper;
 import e3ps.common.controller.BaseController;
 import e3ps.common.util.CommonUtils;
 import e3ps.common.util.DateUtils;
-import e3ps.korea.history.History;
 import e3ps.korea.history.service.HistoryHelper;
 import e3ps.project.Project;
 import e3ps.project.template.service.TemplateHelper;
 import net.sf.json.JSONArray;
-import wt.fc.Persistable;
 import wt.org.WTUser;
 import wt.session.SessionHelper;
 
@@ -124,12 +122,12 @@ public class HistoryController extends BaseController {
 	@GetMapping(value = "/view")
 	public ModelAndView view(@RequestParam String oid) throws Exception {
 		ModelAndView model = new ModelAndView();
-		Persistable per = CommonUtils.getObject(oid);
+//		Persistable per = CommonUtils.getObject(oid);
 		ArrayList<Map<String, String>> headers = SpecCodeHelper.manager.getArrayKeyValueMap("SPEC");
 		Map<String, ArrayList<Map<String, String>>> list = SpecCodeHelper.manager.getOptionList();
-		Map map = new HashMap();
+//		Map map = new HashMap();
 
-		History link = (History) per;
+//		History link = (History) per;
 		
 		JSONArray data = HistoryHelper.manager.view(oid);
 		model.addObject("data", data);

@@ -2,7 +2,6 @@ package e3ps.part.service;
 
 import java.util.Map;
 
-import e3ps.part.dto.PartDTO;
 import wt.method.RemoteInterface;
 
 @RemoteInterface

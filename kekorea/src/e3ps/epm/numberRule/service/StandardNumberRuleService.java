@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -29,7 +28,6 @@ import e3ps.epm.workOrder.WorkOrder;
 import e3ps.workspace.ApprovalContract;
 import e3ps.workspace.ApprovalContractPersistableLink;
 import e3ps.workspace.service.WorkspaceHelper;
-import wt.epm.EPMDocument;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.ownership.Ownership;
@@ -67,13 +65,13 @@ public class StandardNumberRuleService extends StandardManager implements Number
 				String drawingCompany = dto.getDrawingCompany_code();
 				String businessSector = dto.getBusinessSector_code();
 				String classificationWritingDepartments = dto.getClassificationWritingDepartments_code();
-				String size = dto.getSize_code();
+//				String size = dto.getSize_code();
 				int lotNo = dto.getLotNo();
 				String unitName = dto.getUnitName();
 				Map<String, Object> result = NumberRuleHelper.manager.last(number);
 
 				String next = (String) result.get("next");
-				String last = (String) result.get("last");
+//				String last = (String) result.get("last");
 
 				String newNumber = number + next;
 
@@ -234,22 +232,22 @@ public class StandardNumberRuleService extends StandardManager implements Number
 				Row row = sheet.getRow(i);
 
 				// 도면 생성 회사부터
-				String cc = row.getCell(2).getStringCellValue();
+//				String cc = row.getCell(2).getStringCellValue();
 
 				// 사업부문 고정 K
 
-				String number = row.getCell(1).getStringCellValue(); // 도면 번호
+//				String number = row.getCell(1).getStringCellValue(); // 도면 번호
 
-				String name = null;
-				if (row.getCell(4) != null) {
-					if (row.getCell(4).getCellType() == CellType.NUMERIC) {
-						name = String.valueOf(row.getCell(4).getNumericCellValue());
-					} else if (row.getCell(4).getCellType() == CellType.STRING) {
-						name = row.getCell(4).getStringCellValue(); // 도면명
-					}
-				} else {
-					name = number;
-				}
+//				String name = null;
+//				if (row.getCell(4) != null) {
+//					if (row.getCell(4).getCellType() == CellType.NUMERIC) {
+//						name = String.valueOf(row.getCell(4).getNumericCellValue());
+//					} else if (row.getCell(4).getCellType() == CellType.STRING) {
+//						name = row.getCell(4).getStringCellValue(); // 도면명
+//					}
+//				} else {
+//					name = number;
+//				}
 				String company = row.getCell(4).getStringCellValue();
 
 				String size = null;
@@ -257,10 +255,10 @@ public class StandardNumberRuleService extends StandardManager implements Number
 					size = row.getCell(5).getStringCellValue();
 				}
 
-				String state = null;
-				if (row.getCell(8) != null) {
-					state = row.getCell(8).getStringCellValue();
-				}
+//				String state = null;
+//				if (row.getCell(8) != null) {
+//					state = row.getCell(8).getStringCellValue();
+//				}
 
 				String creator = null;
 				if (row.getCell(9) != null) {
@@ -277,7 +275,7 @@ public class StandardNumberRuleService extends StandardManager implements Number
 
 				double version = row.getCell(11).getNumericCellValue();
 
-				NumberRule numberRule = NumberRule.newNumberRule();
+//				NumberRule numberRule = NumberRule.newNumberRule();
 
 				System.out.println("creator=" + creator);
 

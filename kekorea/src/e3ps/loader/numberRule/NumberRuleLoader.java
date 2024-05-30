@@ -1,8 +1,6 @@
 package e3ps.loader.numberRule;
 
 import e3ps.epm.numberRule.service.NumberRuleHelper;
-import e3ps.epm.numberRule.service.NumberRuleService;
-import wt.method.RemoteMethodServer;
 
 public class NumberRuleLoader {
 

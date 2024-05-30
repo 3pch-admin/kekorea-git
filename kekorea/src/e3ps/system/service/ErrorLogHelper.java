@@ -26,9 +26,9 @@ public class ErrorLogHelper {
 	public Map<String, Object> list(Map<String, Object> params) throws Exception {
 		System.out.println("에러로그 START = " + new Timestamp(new Date().getTime()));
 		Map<String, Object> map = new HashMap<String, Object>();
-		String name = (String) params.get("name");
-		String resultMsg = (String) params.get("resultMsg");
-		String sendQuery = (String) params.get("sendQuery");
+//		String name = (String) params.get("name");
+//		String resultMsg = (String) params.get("resultMsg");
+//		String sendQuery = (String) params.get("sendQuery");
 
 		List<ErrorLogDTO> list = new ArrayList<>();
 

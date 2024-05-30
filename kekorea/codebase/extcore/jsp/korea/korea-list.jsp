@@ -20,8 +20,7 @@ String end = (String) request.getAttribute("end");
 </head>
 <body>
 	<form>
-		<input type="hidden" name="sessionid" id="sessionid"><input type="hidden" name="lastNum" id="lastNum">
-		<input type="hidden" name="curPage" id="curPage">
+		<input type="hidden" name="sessionid" id="sessionid"><input type="hidden" name="lastNum" id="lastNum"> <input type="hidden" name="curPage" id="curPage">
 
 		<table class="search-table">
 			<colgroup>
@@ -34,56 +33,49 @@ String end = (String) request.getAttribute("end");
 			</colgroup>
 			<tr>
 				<th>KEK 작번</th>
-				<td class="indent5">
-					<input type="text" name="kekNumber" id="kekNumber" class="width-300">
-				</td>
+				<td class="indent5"><input type="text" name="kekNumber" id="kekNumber" class="width-300"></td>
 				<th>발행일</th>
-				<td class="indent5">
-					<input type="text" name="pdateFrom" id="pdateFrom" class="width-100" value="<%=before%>">
-					~
-					<input type="text" name="pdateTo" id="pdateTo" class="width-100" value="<%=end%>">
-					<img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearFromTo('pdateFrom', 'pdateTo')">
-				</td>
+				<td class="indent5"><input type="text" name="pdateFrom" id="pdateFrom" class="width-100" value="<%=before%>"> ~ <input type="text" name="pdateTo" id="pdateTo" class="width-100" value="<%=end%>"> <img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제"
+					onclick="clearFromTo('pdateFrom', 'pdateTo')"></td>
 				<th>작번 유형</th>
-				<td class="indent5">
-					<select name="projectType" id="projectType" class="width-200">
+				<td class="indent5"><select name="projectType" id="projectType" class="width-200">
 						<option value="">선택</option>
 						<%
-						
 						for (Map projectType : projectTypes) {
 						%>
 						<option value="<%=projectType.get("key")%>"><%=projectType.get("value")%></option>
 						<%
 						}
 						%>
-					</select>
-				</td>
+				</select></td>
 			</tr>
 			<tr>
 				<th>막종</th>
-				<td colspan="5">
-					&nbsp;
-					<%
-					int idx=1;
-					for (CommonCode mak : maks) {
-					%>
+				<td colspan="5">&nbsp;
+					<div class="pretty p-switch">
+						<input type="checkbox" name="all" id="all">
+						<div class="state p-success">
+							<label> <b>전체선택</b>
+							</label>
+						</div>
+					</div> <%
+ int idx = 1;
+ for (CommonCode mak : maks) {
+ %>
 					<div class="pretty p-switch">
 						<input type="checkbox" name="mak" value="<%=mak.getCode()%>" checked="checked">
 						<div class="state p-success">
-							<label>
-								<b><%=mak.getName()%>&#9;</b>
+							<label> <b><%=mak.getName()%></b>
 							</label>
 						</div>
-					</div>
-					<%
-					if( idx%15==0){
-						out.println("<br>&nbsp;");
-					}
-					idx++;
-					}
-					%>
-					<!--  <input type="button" value="ccc" onclick="maksUnchk();"> -->
-					
+					</div> <%
+ if (idx % 15 == 0) {
+ 	out.println("<br>&nbsp;");
+ }
+ idx++;
+ }
+ %> <!--  <input type="button" value="ccc" onclick="maksUnchk();"> -->
+
 				</td>
 			</tr>
 		</table>
@@ -92,19 +84,11 @@ String end = (String) request.getAttribute("end");
 
 		<table class="button-table">
 			<tr>
-				<td class="left" style="white-space: nowrap;">
-					<input type="button" value="통합수배표비교" title="통합수배표비교" onclick="partlistCompare('a-t');">
-					<input type="button" value="P-BOM비교" title="P-BOM비교" class="red" onclick="partlistCompare('a');">
-					<input type="button" value="T-BOM비교" title="T-BOM비교" class="blue" onclick="tbomCompare();">
-					<input type="button" value="기계수배표비교" title="기계수배표비교" class="orange" onclick="partlistCompare('m');">
-					<input type="button" value="전기수배표비교" title="전기수배표비교" onclick="partlistCompare('e');">
-					<input type="button" value="도면일람표비교" title="도면일람표비교" class="blue" onclick="workOrderCompare();">
-					<input type="button" value="CONFIG SHEET비교" title="CONFIG SHEET비교" class="red" onclick="configSheetCompare();">
-					<input type="button" value="이력비교" title="이력비교" class="orange" onclick="historyCompare();">
+				<td class="left" style="white-space: nowrap;"><input type="button" value="통합수배표비교" title="통합수배표비교" onclick="partlistCompare('a-t');"> <input type="button" value="P-BOM비교" title="P-BOM비교" class="red" onclick="partlistCompare('a');"> <input type="button" value="T-BOM비교"
+					title="T-BOM비교" class="blue" onclick="tbomCompare();"> <input type="button" value="기계수배표비교" title="기계수배표비교" class="orange" onclick="partlistCompare('m');"> <input type="button" value="전기수배표비교" title="전기수배표비교" onclick="partlistCompare('e');"> <input type="button"
+					value="도면일람표비교" title="도면일람표비교" class="blue" onclick="workOrderCompare();"> <input type="button" value="CONFIG SHEET비교" title="CONFIG SHEET비교" class="red" onclick="configSheetCompare();"> <input type="button" value="이력비교" title="이력비교" class="orange" onclick="historyCompare();">
 				</td>
-				<td class="right">
-					<input type="button" value="조회" title="조회" onclick="loadGridData();" style="background-color: navy;">
-				</td>
+				<td class="right"><input type="button" value="조회" title="조회" onclick="loadGridData();" style="background-color: navy;"></td>
 			</tr>
 		</table>
 
@@ -496,6 +480,21 @@ String end = (String) request.getAttribute("end");
 
 				 });
 			}
+			
+			const all = document.getElementById("all");
+			const maks = document.getElementsByName("mak");
+		    all.addEventListener('change', (event) => {
+		        if (event.target.checked) {
+		        	for(let i=0; i<maks.length; i++) {
+		        		maks[i].checked = true;
+		        	}
+		        } else {
+		        	for(let i=0; i<maks.length; i++) {
+		        		maks[i].checked = false;
+		        	}
+		        }
+		    });
+			
 		</script>
 	</form>
 </body>

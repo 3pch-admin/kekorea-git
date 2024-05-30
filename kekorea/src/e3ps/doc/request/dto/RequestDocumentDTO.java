@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
-import e3ps.bom.partlist.PartListMasterProjectLink;
 import e3ps.common.util.CommonUtils;
 import e3ps.doc.request.RequestDocument;
 import e3ps.doc.request.RequestDocumentProjectLink;
@@ -55,7 +54,7 @@ public class RequestDocumentDTO {
 	private String poid;
 	private String toid;
 	private boolean connect;
-	
+
 	private String totalKekNumber;
 	private String totalKeNumber;
 
@@ -77,26 +76,26 @@ public class RequestDocumentDTO {
 		setModifiedDate(request.getModifyTimestamp());
 		setModifiedDate_txt(CommonUtils.getPersistableTime(request.getModifyTimestamp()));
 		setDocType(request.getDocType().getDisplay());
-		
-		QueryResult qr2= PersistenceHelper.manager.navigate(request, "project", RequestDocumentProjectLink.class);
+
+		QueryResult qr2 = PersistenceHelper.manager.navigate(request, "project", RequestDocumentProjectLink.class);
 		String reKekNumber = "";
 		String reKeNumber = "";
-		
-		while(qr2.hasMoreElements()) {
+
+		while (qr2.hasMoreElements()) {
 			Project pp = (Project) qr2.nextElement();
-	
-			if( !"".equals(reKekNumber)) {
-				reKekNumber += ","+pp.getKekNumber();
-			}else {
+
+			if (!"".equals(reKekNumber)) {
+				reKekNumber += "," + pp.getKekNumber();
+			} else {
 				reKekNumber = pp.getKekNumber();
 			}
-			
-			if( !"".equals(reKeNumber)) {
-				reKeNumber += ","+pp.getKeNumber();
-			}else {
+
+			if (!"".equals(reKeNumber)) {
+				reKeNumber += "," + pp.getKeNumber();
+			} else {
 				reKeNumber = pp.getKeNumber();
 			}
-		}	
+		}
 		setTotalKekNumber(reKekNumber);
 		setTotalKeNumber(reKeNumber);
 	}
@@ -112,7 +111,7 @@ public class RequestDocumentDTO {
 
 		setName(request.getName());
 		setReqDescription(request.getDescription());
-		
+
 		if (project.getTemplate() != null) {
 			setTemplate(project.getTemplate().getPersistInfo().getObjectIdentifier().getStringValue());
 		}

@@ -23,16 +23,12 @@ import e3ps.admin.commonCode.service.CommonCodeHelper;
 import e3ps.common.controller.BaseController;
 import e3ps.common.util.CommonUtils;
 import e3ps.doc.request.RequestDocument;
-import e3ps.doc.request.RequestDocumentProjectLink;
 import e3ps.doc.request.dto.RequestDocumentDTO;
 import e3ps.doc.request.service.RequestDocumentHelper;
 import e3ps.org.service.OrgHelper;
-import e3ps.project.Project;
 import e3ps.project.template.service.TemplateHelper;
 import e3ps.system.service.ErrorLogHelper;
 import net.sf.json.JSONArray;
-import wt.fc.PersistenceHelper;
-import wt.fc.QueryResult;
 import wt.org.WTUser;
 import wt.session.SessionHelper;
 

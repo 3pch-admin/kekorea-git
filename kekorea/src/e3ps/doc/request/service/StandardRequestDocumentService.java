@@ -16,9 +16,6 @@ import e3ps.common.util.CommonUtils;
 import e3ps.common.util.DateUtils;
 import e3ps.common.util.QuerySpecUtils;
 import e3ps.common.util.StringUtils;
-import e3ps.doc.meeting.Meeting;
-import e3ps.doc.meeting.MeetingProjectLink;
-import e3ps.doc.meeting.MeetingTemplate;
 import e3ps.doc.request.RequestDocument;
 import e3ps.doc.request.RequestDocumentProjectLink;
 import e3ps.doc.request.dto.RequestDocumentDTO;
@@ -647,7 +644,7 @@ public class StandardRequestDocumentService extends StandardManager implements R
 		ArrayList<Map<String, String>> addRows9 = dto.getAddRows9();
 		ArrayList<String> secondarys = dto.getPrimarys();
 
-		ArrayList<Map<String, String>> addRows = dto.getAddRows();
+//		ArrayList<Map<String, String>> addRows = dto.getAddRows();
 //			ArrayList<Map<String, String>> addRows9 = dto.getAddRows9();
 		ArrayList<Map<String, String>> agreeRows = dto.getAgreeRows();
 		ArrayList<Map<String, String>> approvalRows = dto.getApprovalRows();

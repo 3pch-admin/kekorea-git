@@ -195,7 +195,7 @@ public class ErpHelper {
 		ResultSet _rs = null;
 		try {
 
-			String cacheKey = partNo + quantity;
+//			String cacheKey = partNo + quantity;
 //			Map<String, Object> cacheData = cacheManager.get(cacheKey);
 
 			sql.append("SELECT ITEMSEQ, ITEMNAME, SPEC");

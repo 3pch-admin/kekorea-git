@@ -55,7 +55,7 @@ public class KEKScheduleJobs {
 
 			QueryResult result = PersistenceHelper.manager.find(query);
 
-			int cnt = 0;
+//			int cnt = 0;
 			while (result.hasMoreElements()) {
 				Object[] obj = (Object[]) result.nextElement();
 				Project project = (Project) obj[0];
@@ -151,7 +151,7 @@ public class KEKScheduleJobs {
 		String[] QTASK = ProjectHelper.QTASK;
 		ArrayList<Task> list = new ArrayList<Task>();
 		list = ProjectHelper.manager.getterProjectTask2(project, list);
-		StringBuffer sb = new StringBuffer();
+//		StringBuffer sb = new StringBuffer();
 		for (Task tt : list) {
 
 			String tname = tt.getName();

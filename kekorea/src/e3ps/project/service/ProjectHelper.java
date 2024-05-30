@@ -736,7 +736,7 @@ public class ProjectHelper {
 	 */
 	public int getKekProgress(Project project) throws Exception {
 		int kekProgress = 0;
-		String[] taskTypes = new String[] { "COMMON", "MACHINE", "ELEC", "SOFT" };
+//		String[] taskTypes = new String[] { "COMMON", "MACHINE", "ELEC", "SOFT" };
 //		ArrayList<Task> list = recurciveTask(project, taskTypes);
 		ArrayList<Task> list = recurciveTask(project);
 
@@ -1459,7 +1459,7 @@ public class ProjectHelper {
 	}
 
 	private int ganttState(Task tt) throws Exception {
-		boolean isNormalTask = tt.getTaskType().equals("일반") || tt.getAllocate() == 0;
+		boolean isNormalTask = tt.getTaskType().toString().equals("일반") || tt.getAllocate() == 0;
 		int ganttState = 4; // 준비중
 		String state = tt.getState();
 		if (isNormalTask) {
@@ -1800,7 +1800,7 @@ public class ProjectHelper {
 
 	public int gate4StateIcon(Project project) throws Exception {
 		int gate4 = ProjectGateState.GATE_NO_START;
-		StringBuffer sb = new StringBuffer();
+//		StringBuffer sb = new StringBuffer();
 
 		// 태스크 이름으로 처리
 		ArrayList<Task> list = new ArrayList<Task>();
@@ -1903,7 +1903,7 @@ public class ProjectHelper {
 
 	public int gate5StateIcon(Project project) throws Exception {
 		int gate5 = ProjectGateState.GATE_NO_START;
-		StringBuffer sb = new StringBuffer();
+//		StringBuffer sb = new StringBuffer();
 
 		// 태스크 이름으로 처리
 		ArrayList<Task> list = new ArrayList<Task>();

@@ -20,7 +20,6 @@ import e3ps.org.PeopleMakLink;
 import e3ps.org.PeopleWTUserLink;
 import e3ps.org.dto.UserDTO;
 import wt.fc.PersistenceHelper;
-import wt.fc.PersistenceServerHelper;
 import wt.fc.QueryResult;
 import wt.federation.PrincipalManager.DirContext;
 import wt.org.OrganizationServicesMgr;

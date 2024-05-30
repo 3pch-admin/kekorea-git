@@ -506,7 +506,7 @@ public class DocumentHelper {
 			int master = query.appendClassList(E3PSDocumentMaster.class, false);
 
 			SearchCondition sc = null;
-			ClassAttribute ca = null;
+//			ClassAttribute ca = null;
 
 			sc = new SearchCondition(PRJDocument.class, "masterReference.key.id", E3PSDocumentMaster.class,
 					"thePersistInfo.theObjectIdentifier.id");

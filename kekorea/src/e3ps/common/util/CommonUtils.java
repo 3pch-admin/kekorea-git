@@ -437,10 +437,10 @@ public class CommonUtils {
 
 	// 파일복사
 	public static File copyFile(File source, File dest) {
-		long startTime = System.currentTimeMillis();
+//		long startTime = System.currentTimeMillis();
 
 		int count = 0;
-		long totalSize = 0;
+//		long totalSize = 0;
 		byte[] b = new byte[128];
 
 		FileInputStream in = null;
@@ -456,7 +456,7 @@ public class CommonUtils {
 			bout = new BufferedOutputStream(out);
 			while ((count = bin.read(b)) != -1) {
 				bout.write(b, 0, count);
-				totalSize += count;
+//				totalSize += count;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
-import e3ps.bom.partlist.PartListMasterProjectLink;
 import e3ps.common.util.CommonUtils;
 import e3ps.doc.meeting.Meeting;
 import e3ps.doc.meeting.MeetingProjectLink;

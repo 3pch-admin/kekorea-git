@@ -11,7 +11,6 @@ import java.util.Vector;
 
 import org.apache.commons.io.FileUtils;
 
-import com.ptc.wvs.server.util.FileHelper;
 import com.ptc.wvs.server.util.PublishUtils;
 
 import wt.content.ApplicationData;

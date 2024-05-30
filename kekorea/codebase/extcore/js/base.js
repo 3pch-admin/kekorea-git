@@ -14,7 +14,6 @@ function call(url, params, callBack, methodType, async) {
 	if(async == null) {
 		async = true;
 	}
-	console.log(async);
 	if (methodType == null) {
 		methodType = "POST";
 	}
@@ -37,12 +36,11 @@ function call(url, params, callBack, methodType, async) {
 		success: function(res) {
 			callBack(res);
 		},
-		complete: function(res) {
+//		complete: function(res) {
 
-		},
+//		},
 		error: function(res) {
 			const status = res.status;
-			console.log(status);
 			if (status == 405) {
 				alert("에러코드 : " + status + ", 컨트롤러 해당 메소드를 지원 하는지 확인 !! (EX : POST, GET, PUT, DELETE 방식)")
 			} else if (status == 404) {
@@ -292,7 +290,6 @@ function toValue(id) {
 // TABLE ID 값 한번에 처리
 function toField(params, arr) {
 	for (let i = 0; i < arr.length; i++) {
-		console.log(document.getElementById(arr[i]).value);
 		params[arr[i]] = document.getElementById(arr[i]).value;
 	}
 	return params;

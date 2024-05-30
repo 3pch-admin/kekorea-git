@@ -219,7 +219,7 @@ public class StandardPartService extends StandardManager implements PartService 
 	public void modify(Map<String, Object> params) throws Exception {
 		String name = (String) params.get("name");
 		String state = (String) params.get("state");
-		String oid = (String) params.get("oid");
+//		String oid = (String) params.get("oid");
 		System.out.println(name + "======================" + state);
 		Transaction trs = new Transaction();
 		try {
@@ -246,7 +246,7 @@ public class StandardPartService extends StandardManager implements PartService 
 
 	@Override
 	public void batch(Map<String, Object> params) throws Exception {
-		Map<String, Object> result = new HashMap<>();
+//		Map<String, Object> result = new HashMap<>();
 		ArrayList<Map<String, Object>> addRows = (ArrayList<Map<String, Object>>) params.get("addRows");
 		ArrayList<String> secondarys = (ArrayList<String>) params.get("secondarys");
 		Transaction trs = new Transaction();
@@ -314,7 +314,7 @@ public class StandardPartService extends StandardManager implements PartService 
 
 	@Override
 	public void plm(Map<String, Object> params) throws Exception {
-		Map<String, Object> result = new HashMap<>();
+//		Map<String, Object> result = new HashMap<>();
 		ArrayList<Map<String, Object>> addRows = (ArrayList<Map<String, Object>>) params.get("addRows");
 		ArrayList<String> secondarys = (ArrayList<String>) params.get("secondarys");
 		Transaction trs = new Transaction();

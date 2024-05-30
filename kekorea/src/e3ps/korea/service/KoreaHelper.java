@@ -15,7 +15,6 @@ import e3ps.project.dto.ProjectDTO;
 import wt.fc.PagingQueryResult;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
-import wt.query.ArrayExpression;
 import wt.query.ClassAttribute;
 import wt.query.ColumnExpression;
 import wt.query.ConstantExpression;
@@ -46,7 +45,7 @@ public class KoreaHelper {
 //		qs.setDescendantQuery(false);
 		if (kekNumbers != null) {
 			if (!kekNumbers.isEmpty()) {
-				ArrayList<String> kekNumbersUpper = new ArrayList();
+//				ArrayList<String> kekNumbersUpper = new ArrayList();
 
 				qs.appendOpenParen();
 				for (String kekNumber : kekNumbers) {

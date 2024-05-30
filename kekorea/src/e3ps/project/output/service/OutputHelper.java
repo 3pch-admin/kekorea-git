@@ -553,7 +553,7 @@ public class OutputHelper {
 		String state = (String) params.get("state");
 		boolean latest = (boolean) params.get("latest");
 		String oid = (String) params.get("oid"); // 폴더 OID
-		String type = (String) params.get("type");
+//		String type = (String) params.get("type");
 		String mak = (String) params.get("mak");
 
 		QuerySpec query = new QuerySpec();

@@ -10,7 +10,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import e3ps.common.util.ContentUtils;
 import e3ps.common.util.QuerySpecUtils;
@@ -291,12 +290,12 @@ public class CommonContentHelper {
 	 * 파일 템프 테이블 클리어
 	 */
 	public void clean() throws Exception {
-		File directory = new File(savePath);
-		File[] list = directory.listFiles();
-		for (File file : list) {
+//		File directory = new File(savePath);
+//		File[] list = directory.listFiles();
+//		for (File file : list) {
 //			System.out.println("###content clean=="+file.getPath()+"=="+file.getName());
 //			file.delete();
-		}
+//		}
 	}
 
 	/**

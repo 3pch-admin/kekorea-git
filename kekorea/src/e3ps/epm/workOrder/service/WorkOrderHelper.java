@@ -73,7 +73,6 @@ import wt.queue.QueueHelper;
 import wt.services.ServiceFactory;
 import wt.session.SessionHelper;
 import wt.util.WTAttributeNameIfc;
-import wt.util.WTProperties;
 
 public class WorkOrderHelper {
 
@@ -84,14 +83,14 @@ public class WorkOrderHelper {
 	private static final String className = "e3ps.common.aspose.AsposeUtils";
 	private static final String methodName = "attachMergePdf";
 
-	private static String codebase = null;
-	static {
-		try {
-			codebase = WTProperties.getServerProperties().getProperty("wt.codebase.location");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	private static String codebase = null;
+//	static {
+//		try {
+//			codebase = WTProperties.getServerProperties().getProperty("wt.codebase.location");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * 도면 일람표 조회
@@ -819,7 +818,7 @@ public class WorkOrderHelper {
 			for (int j = start; j < end; j++) {
 				// 데이터 머지
 				// 136 start ... 180 end...
-				// 146.... 
+				// 146....
 				if ((list.size() - 1) >= j) {
 					WorkOrderDataLink data = (WorkOrderDataLink) list.get(j);
 					Persistable per = data.getData();

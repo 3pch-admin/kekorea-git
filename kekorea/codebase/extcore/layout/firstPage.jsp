@@ -16,7 +16,6 @@ int gap = (int) request.getAttribute("gap");
 <%@include file="/extcore/jsp/common/css.jsp"%>
 <%@include file="/extcore/jsp/common/script.jsp"%>
 <%@include file="/extcore/jsp/common/aui/auigrid.jsp"%>
-<script type="text/javascript" src="/Windchill/extcore/js/auigrid.js?v=1010"></script>
 </head>
 <body>
 	<form>

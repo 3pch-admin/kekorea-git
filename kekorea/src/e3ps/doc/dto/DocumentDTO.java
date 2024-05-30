@@ -10,7 +10,6 @@ import e3ps.common.util.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
 import wt.doc.WTDocument;
-import wt.vc.VersionControlHelper;
 
 @Getter
 @Setter

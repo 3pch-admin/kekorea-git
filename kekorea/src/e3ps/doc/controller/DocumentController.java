@@ -19,9 +19,7 @@ import e3ps.doc.dto.DocumentDTO;
 import e3ps.doc.service.DocumentHelper;
 import e3ps.system.service.ErrorLogHelper;
 import net.sf.json.JSONArray;
-import wt.clients.folder.FolderTaskLogic;
 import wt.doc.WTDocument;
-import wt.folder.Folder;
 import wt.org.WTUser;
 import wt.session.SessionHelper;
 

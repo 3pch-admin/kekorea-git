@@ -334,8 +334,8 @@ public class ConfigSheetHelper {
 			Object[] obj = (Object[]) result.nextElement();
 			ConfigSheetVariableLink link = (ConfigSheetVariableLink) obj[0];
 			ConfigSheetVariable variable = link.getVariable();
-			ConfigSheetCode category = variable.getCategory();
-			ConfigSheetCode item = variable.getItem();
+//			ConfigSheetCode category = variable.getCategory();
+//			ConfigSheetCode item = variable.getItem();
 			int sort = link.getSort();
 			Map<String, Object> map = new HashMap<>();
 			map.put("category_code", variable.getCategory_code());
@@ -476,7 +476,7 @@ public class ConfigSheetHelper {
 		list.add(pdateList);
 
 		
-		ArrayList<Map<String,String>> defaultKey = new ArrayList<>();
+//		ArrayList<Map<String,String>> defaultKey = new ArrayList<>();
 	
 		
 		QueryResult qr = PersistenceHelper.manager.navigate(p1, "configSheet", ConfigSheetProjectLink.class);
@@ -496,8 +496,8 @@ public class ConfigSheetHelper {
 				Object[] obj = (Object[]) result.nextElement();
 				ConfigSheetVariableLink link = (ConfigSheetVariableLink) obj[0];
 				ConfigSheetVariable variable = link.getVariable();
-				ConfigSheetCode category = variable.getCategory();
-				ConfigSheetCode item = variable.getItem();
+//				ConfigSheetCode category = variable.getCategory();
+//				ConfigSheetCode item = variable.getItem();
 				
 				Map<String, Object> mergedList = new HashMap<>();
 				

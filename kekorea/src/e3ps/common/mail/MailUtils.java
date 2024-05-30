@@ -18,14 +18,12 @@ import javax.mail.internet.MimeMultipart;
 
 import e3ps.workspace.ApprovalLine;
 import e3ps.workspace.ApprovalMaster;
-import e3ps.workspace.service.WorkspaceHelper;
 import wt.doc.WTDocument;
 import wt.epm.EPMDocument;
 import wt.fc.Persistable;
 import wt.org.WTUser;
 import wt.part.WTPart;
 import wt.session.SessionHelper;
-import wt.util.WTProperties;
 
 public class MailUtils {
 
@@ -34,9 +32,9 @@ public class MailUtils {
 	private static final String port = "465";
 
 	private static final String host = "3pchain.co.kr";
-	
+
 	private static String codebase;
-	
+
 	private MailUtils() {
 
 	}
@@ -113,75 +111,76 @@ public class MailUtils {
 	}
 
 	public static void sendReturnMail(ApprovalMaster master, ApprovalLine lines) throws Exception {
-		Session session = getSession();
-
-		Message message = new MimeMessage(session);
-		WTUser sessionUser = (WTUser) SessionHelper.manager.getPrincipal();
-
-		// 보내는 사람
-		message.setFrom(new InternetAddress(sessionUser.getEMail(), sessionUser.getFullName()));
-
-		// 기안자 에게로
-
-		ApprovalLine line = null;//WorkspaceHelper.manager.getFirstLine(master);
-
-		String toMail = line.getOwnership().getOwner().getEMail();
-		InternetAddress to = new InternetAddress();
-		to = new InternetAddress(toMail);
-
-		Persistable per = line.getMaster().getPersist();
-
-		String obj = getObjMsg(per);
-		String header = "[PDM 결재(반려) - " + obj + "]";
-
-		// 결제되는 라인 OID
-		String content = getObjContent(sessionUser, lines, "반려");
-
-		message.setRecipient(Message.RecipientType.TO, to);
-		message.setSubject(header);
-		MimeBodyPart body = new MimeBodyPart();
-		body.setContent(content, "text/html; charset=EUC-KR");
-		Multipart multiPart = new MimeMultipart();
-		multiPart.addBodyPart(body);
-		message.setContent(multiPart);
-		message.setSentDate(new Date());
-		Transport.send(message);
+//		Session session = getSession();
+//
+//		Message message = new MimeMessage(session);
+//		WTUser sessionUser = (WTUser) SessionHelper.manager.getPrincipal();
+//
+//		// 보내는 사람
+//		message.setFrom(new InternetAddress(sessionUser.getEMail(), sessionUser.getFullName()));
+//
+//		// 기안자 에게로
+//
+//		ApprovalLine line = null;// WorkspaceHelper.manager.getFirstLine(master);
+//
+//		String toMail = line.getOwnership().getOwner().getEMail();
+//		InternetAddress to = new InternetAddress();
+//		to = new InternetAddress(toMail);
+//
+//		Persistable per = line.getMaster().getPersist();
+//
+//		String obj = getObjMsg(per);
+//		String header = "[PDM 결재(반려) - " + obj + "]";
+//
+//		// 결제되는 라인 OID
+//		String content = getObjContent(sessionUser, lines, "반려");
+//
+//		message.setRecipient(Message.RecipientType.TO, to);
+//		message.setSubject(header);
+//		MimeBodyPart body = new MimeBodyPart();
+//		body.setContent(content, "text/html; charset=EUC-KR");
+//		Multipart multiPart = new MimeMultipart();
+//		multiPart.addBodyPart(body);
+//		message.setContent(multiPart);
+//		message.setSentDate(new Date());
+//		Transport.send(message);
 	}
 
 	public static void sendEndMail(ApprovalMaster master, ApprovalLine lines) throws Exception {
-		Session session = getSession();
-
-		Message message = new MimeMessage(session);
-		WTUser sessionUser = (WTUser) SessionHelper.manager.getPrincipal();
-
-		// 보내는 사람
-		message.setFrom(new InternetAddress(sessionUser.getEMail(), sessionUser.getFullName()));
-
-		// 기안자 에게로
-
-		ApprovalLine line = null; // WorkspaceHelper.manager.getFirstLine(master);
-
-		String toMail = line.getOwnership().getOwner().getEMail();
-		InternetAddress to = new InternetAddress();
-		to = new InternetAddress(toMail);
-
-		Persistable per = line.getMaster().getPersist();
-
-		String obj = getObjMsg(per);
-		String header = "[PDM 결재(최종승인) - " + obj + "]";
-
-		// 결제되는 라인 OID
-		String content = getObjContent(sessionUser, lines, "최종승인");
-
-		message.setRecipient(Message.RecipientType.TO, to);
-		message.setSubject(header);
-		MimeBodyPart body = new MimeBodyPart();
-		body.setContent(content, "text/html; charset=EUC-KR");
-		Multipart multiPart = new MimeMultipart();
-		multiPart.addBodyPart(body);
-		message.setContent(multiPart);
-		message.setSentDate(new Date());
-		Transport.send(message);
+//		Session session = getSession();
+//
+//		Message message = new MimeMessage(session);
+//		WTUser sessionUser = (WTUser) SessionHelper.manager.getPrincipal();
+//
+//		// 보내는 사람
+//		message.setFrom(new InternetAddress(sessionUser.getEMail(), sessionUser.getFullName()));
+//
+//		// 기안자 에게로
+//
+////		ApprovalLine line = null; // WorkspaceHelper.manager.getFirstLine(master);
+//		ApprovalLine line = WorkspaceHelper.manager.getFirstLine(master);
+//
+//		String toMail = line.getOwnership().getOwner().getEMail();
+//		InternetAddress to = new InternetAddress();
+//		to = new InternetAddress(toMail);
+//
+//		Persistable per = line.getMaster().getPersist();
+//
+//		String obj = getObjMsg(per);
+//		String header = "[PDM 결재(최종승인) - " + obj + "]";
+//
+//		// 결제되는 라인 OID
+//		String content = getObjContent(sessionUser, lines, "최종승인");
+//
+//		message.setRecipient(Message.RecipientType.TO, to);
+//		message.setSubject(header);
+//		MimeBodyPart body = new MimeBodyPart();
+//		body.setContent(content, "text/html; charset=EUC-KR");
+//		Multipart multiPart = new MimeMultipart();
+//		multiPart.addBodyPart(body);
+//		message.setContent(multiPart);
+//		message.setSentDate(new Date());
+//		Transport.send(message);
 	}
 
 	// 결재 첫 시작...
