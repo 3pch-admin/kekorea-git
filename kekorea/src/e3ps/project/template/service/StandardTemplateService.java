@@ -157,47 +157,57 @@ public class StandardTemplateService extends StandardManager implements Template
 
 	private void commit(Template template) throws Exception {
 		ArrayList<Task> list = TemplateHelper.manager.recurciveTask(template);
+
+		// 제일 높은 기간으로 템플릿 전체 일정을 잡는다..
+		int du = 0;
+		for (Task t : list) {
+			int comp = t.getDuration();
+			if (comp > du) {
+				du = comp;
+			}
+		}
+
 		// 자식 태스크 계산하여 날짜 변경
-		TaskHelper.service.calculation(list);
-
-		// 기간 계산
-		Timestamp start = null;
-		Timestamp end = null;
-		boolean edit = false;
-		int duration = 1;
-		// 태스크 모두 삭제 될 경우
-		if (list.size() == 0) {
-			// 계획 시작일 계획 종료일 동일
-			start = DateUtils.getPlanStartDate();
-			end = DateUtils.getPlanEndDate();
-			template.setPlanStartDate(start);
-			template.setPlanEndDate(end);
-			template.setDuration(1);
-		}
-
-		for (int i = list.size() - 1; i >= 0; i--) {
-			Task child = (Task) list.get(i);
-
-			Timestamp cstart = child.getPlanStartDate();
-			Timestamp cend = child.getPlanEndDate();
-
-			if (start == null || (start.getTime() > cstart.getTime())) {
-				start = cstart;
-				edit = true;
-			}
-
-			if (end == null || (end.getTime() < cend.getTime())) {
-				end = cend;
-				edit = true;
-			}
-		}
-
-		if (edit) {
-			template.setPlanStartDate(start);
-			template.setPlanEndDate(end);
-			duration = DateUtils.getDuration(start, end);
-			template.setDuration(duration);
-		}
+//		TaskHelper.service.calculation(list);
+//
+//		// 기간 계산
+//		Timestamp start = null;
+//		Timestamp end = null;
+//		boolean edit = false;
+//		int duration = 1;
+//		// 태스크 모두 삭제 될 경우
+//		if (list.size() == 0) {
+//			// 계획 시작일 계획 종료일 동일
+//			start = DateUtils.getPlanStartDate();
+//			end = DateUtils.getPlanEndDate();
+//			template.setPlanStartDate(start);
+//			template.setPlanEndDate(end);
+//			template.setDuration(1);
+//		}
+//
+//		for (int i = list.size() - 1; i >= 0; i--) {
+//			Task child = (Task) list.get(i);
+//
+//			Timestamp cstart = child.getPlanStartDate();
+//			Timestamp cend = child.getPlanEndDate();
+//
+//			if (start == null || (start.getTime() > cstart.getTime())) {
+//				start = cstart;
+//				edit = true;
+//			}
+//
+//			if (end == null || (end.getTime() < cend.getTime())) {
+//				end = cend;
+//				edit = true;
+//			}
+//		}
+//
+//		if (edit) {
+//			template.setPlanStartDate(start);
+//			template.setPlanEndDate(end);
+//			duration = DateUtils.getDuration(start, end);
+			template.setDuration(du);
+//		}
 		PersistenceHelper.manager.modify(template);
 	}
 
