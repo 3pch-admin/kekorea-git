@@ -97,7 +97,7 @@ JSONArray data = (JSONArray) request.getAttribute("data");
 				</td>
 			</tr>
 			<tr>
-				<th class="lb">첨부파일</th>
+				<th class="lb req">첨부파일</th>
 				<td class="indent5" colspan="5">
 					<jsp:include page="/extcore/jsp/common/attach-secondary.jsp">
 						<jsp:param value="" name="oid" />
@@ -389,6 +389,7 @@ JSONArray data = (JSONArray) request.getAttribute("data");
 		const addRows11 = AUIGrid.getAddedRowItems(myGridID11);
 		const toid = document.getElementById("toid").value;
 		const poid = document.getElementById("poid").value;
+		const secondarys = toArray("secondarys"); 
 		const url = getCallUrl("/workOrder/create");
 		const workOrderType = document.getElementById("workOrderType");
 		addRows.sort(function(a, b) {
@@ -398,6 +399,11 @@ JSONArray data = (JSONArray) request.getAttribute("data");
 		if (isNull(name.value)) {
 			alert("도면일람표 제목을 입력하세요.");
 			name.focus();
+			return false;
+		}
+		
+		if (secondarys.length === 0) {
+			alert("첨부파일을 선택하세요.");
 			return false;
 		}
 		
@@ -449,7 +455,7 @@ JSONArray data = (JSONArray) request.getAttribute("data");
 		params.addRows11 = addRows11;
 		params.poid = poid;
 		params.toid = toid;
-		params.secondarys = toArray("secondarys");
+		params.secondarys = secondarys;
 		toRegister(params, addRows8);
 		openLayer();
 		call(url, params, function(data) {

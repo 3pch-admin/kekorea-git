@@ -31,6 +31,8 @@ import e3ps.project.service.ProjectHelper;
 import e3ps.project.task.Task;
 import e3ps.project.task.variable.TaskStateVariable;
 import e3ps.project.variable.ProjectStateVariable;
+import e3ps.workspace.ApprovalLine;
+import e3ps.workspace.ApprovalMaster;
 import e3ps.workspace.service.WorkspaceHelper;
 import wt.clients.folder.FolderTaskLogic;
 import wt.content.ApplicationData;
@@ -67,7 +69,7 @@ public class StandardWorkOrderService extends StandardManager implements WorkOrd
 		ArrayList<Map<String, String>> agreeRows = dto.getAgreeRows();
 		ArrayList<Map<String, String>> approvalRows = dto.getApprovalRows();
 		ArrayList<Map<String, String>> receiveRows = dto.getReceiveRows();
-//		ArrayList<Map<String, String>> addRows11 = dto.getAddRows11();
+		ArrayList<Map<String, String>> addRows11 = dto.getAddRows11();
 //		String number = addRows11.get(0).get("number");
 		ArrayList<String> secondarys = dto.getSecondarys();
 		String location = "/Default/프로젝트/" + workOrderType + "_도면일람표";
@@ -385,6 +387,22 @@ public class StandardWorkOrderService extends StandardManager implements WorkOrd
 			if (approvalRows.size() > 0) {
 				WorkspaceHelper.manager.deleteAllLines(workOrder); // 기존결재 잇으면 삭제 후 작업
 				WorkspaceHelper.service.register(workOrder, agreeRows, approvalRows, receiveRows);
+			}
+			boolean isApproval = approvalRows.size() > 0;
+			if (!isApproval) {
+				ApprovalMaster mm = WorkspaceHelper.manager.getMaster(workOrder);
+				if (mm != null) {
+					String n = WorkspaceHelper.manager.getName(workOrder);
+					mm.setPersist(workOrder);
+					mm.setName(n);
+
+					ArrayList<ApprovalLine> all = WorkspaceHelper.manager.getAllLines(mm);
+					for (ApprovalLine line : all) {
+						line.setName(n);
+						PersistenceHelper.manager.modify(line);
+					}
+					PersistenceHelper.manager.modify(mm);
+				}
 			}
 
 			trs.commit();

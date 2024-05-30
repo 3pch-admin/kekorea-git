@@ -141,6 +141,7 @@ ArrayList<Map<String, String>> maks = (ArrayList<Map<String, String>>) request.g
 					<img src="/Windchill/extcore/images/fileicon/file_excel.gif" title="엑셀 다운로드" onclick="exportExcel();">
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('document-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('document-list');">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="OLD" title="OLD" onclick="toggle();" style="background-color: orange;">
 				</td>
 				<td class="right">
@@ -378,9 +379,16 @@ ArrayList<Map<String, String>> maks = (ArrayList<Map<String, String>>) request.g
 			});
 
 			function toggle() {
-				const iframe = parent.document.getElementById("content");
+				const tab = parent.document.getElementById("tab27");
+				if (tab != null) {
+					const iframe = tab.querySelector('iframe');
+					if (iframe) {
+						iframe.src = getCallUrl("/output/old");;
+					}
+				}
+// 				const iframe = parent.document.getElementById("iframe");
 				// 				parent.openLayer();
-				iframe.src = getCallUrl("/output/old");
+// 				iframe.src = getCallUrl("/output/old");
 			}
 
 			function exportExcel() {
@@ -418,6 +426,17 @@ ArrayList<Map<String, String>> maks = (ArrayList<Map<String, String>>) request.g
 				//2row 15, 140
 				AUIGrid.resize(myGridID, ww-260, hh-200);
 			}
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab27");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

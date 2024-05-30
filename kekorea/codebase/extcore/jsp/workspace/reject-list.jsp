@@ -41,6 +41,7 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('reject-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('reject-list');">
 					<!--  <img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test1.mp4');">-->
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 				</td>
 				<td class="right">
 					<input type="button" value="결재 초기화" title="결재 초기화" style="background-color: orange;" onclick="_reset();" class="blue">
@@ -223,6 +224,19 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					parent.closeLayer();
 				})
 			}
+			
+			
+
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab7");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

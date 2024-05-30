@@ -98,6 +98,7 @@ String end = (String) request.getAttribute("end");
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('agree-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('agree-list');">
 					<!--  <img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test1.mp4');">-->
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 				</td>
 				<td class="right">
 					<input type="button" value="조회" title="조회" style="background-color: navy;" onclick="loadGridData();">
@@ -311,6 +312,18 @@ String end = (String) request.getAttribute("end");
 				AUIGrid.resize(myGridID);
 			});
 
+
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab2");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
+			
 			function gridResize() {
 				//1636-629
 				const ww = window.innerWidth; //1654

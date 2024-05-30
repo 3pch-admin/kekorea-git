@@ -34,6 +34,7 @@
 				<td class="right">
 					<!--  	<input type="button" value="행 추가(이전)" title="행 추가(이전)" class="" onclick="addBeforeRow();"> -->
 					<!--	<input type="button" value="행 추가(이후)" title="행 추가(이후)" onclick="addAfterRow();" style="background-color: orange;">-->
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="행 추가" title="행 추가" class="" onclick="addLastRow();">
 					<input type="button" value="행 삭제" title="행 삭제" class="red" onclick="deleteRow();">
 					<!-- 					<input type="button" value="저장" title="저장" class="blue" onclick="save('')"> -->
@@ -469,6 +470,17 @@
 				}
 				return true; // 기본 행위 유지
 			}
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab21");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

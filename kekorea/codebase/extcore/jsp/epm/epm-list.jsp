@@ -161,6 +161,7 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					<img src="/Windchill/extcore/images/fileicon/file_excel.gif" title="엑셀 다운로드" onclick="exportExcel();">
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('epm-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('epm-list');">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 				</td>
 				<td class="right">
 					<input type="button" value="라이브러리" title="라이브러리" onclick="toggle('library');" style="background-color: orange;">
@@ -488,6 +489,17 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 				//2row 15, 140
 				AUIGrid.resize(myGridID, ww-260, hh-200);
 			}
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab15");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

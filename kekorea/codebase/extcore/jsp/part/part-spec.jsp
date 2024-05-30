@@ -27,6 +27,7 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 				<td class="right">
 				<!-- 	<input type="button" value="행 추가(이전)" title="행 추가(이전)" class="" onclick="addBeforeRow();"> -->
 				<!--	<input type="button" value="행 추가(이후)" title="행 추가(이후)" onclick="addAfterRow();" style="background-color: orange;"> -->
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="행 추가" title="행 추가" class="" onclick="addLastRow();">
 					<input type="button" value="행 삭제" title="행 삭제" class="red" onclick="deleteRow();">
 					<input type="button" value="저장" title="저장" onclick="save('')" style="background-color: navy;">
@@ -496,6 +497,17 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 			window.addEventListener("resize", function() {
 				AUIGrid.resize(myGridID);
 				AUIGrid.resize(myGridID2);
+			});
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab24");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
 			});
 		</script>
 	</form>

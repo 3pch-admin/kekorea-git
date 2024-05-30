@@ -21,6 +21,7 @@
 					</div>
 				</td>
 				<td class="right">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="결재등록" title="결재등록" onclick="save();" style="background-color: navy;">
 				</td>
 			</tr>
@@ -215,6 +216,17 @@
 			window.addEventListener("resize", function() {
 				AUIGrid.resize(myGridID);
 				AUIGrid.resize(myGridID8);
+			});
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab30");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
 			});
 		</script>
 	</form>

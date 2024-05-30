@@ -102,7 +102,7 @@ if ("modify".equals(mode)) {
 				</td>
 			</tr>
 			<tr>
-				<th class="b">결재</th>
+				<th class="lb">결재</th>
 				<td colspan="3">
 					<jsp:include page="/extcore/jsp/common/approval-register.jsp">
 						<jsp:param value="" name="oid" />
@@ -388,6 +388,7 @@ if ("modify".equals(mode)) {
 		const addRows = AUIGrid.getGridData(myGridID);
 		const addRows9 = AUIGrid.getGridData(myGridID9);
 		const addRows8 = AUIGrid.getGridData(myGridID8);
+		const secondarys = toArray("secondarys");
 		const url = getCallUrl("/workOrder/<%=mode%>");
 
 		addRows.sort(function(a, b) {
@@ -397,6 +398,11 @@ if ("modify".equals(mode)) {
 		if (isNull(name.value)) {
 			alert("도면일람표 제목을 입력하세요.");
 			name.focus();
+			return false;
+		}
+		
+		if (secondarys.length === 0) {
+			alert("첨부파일을 선택하세요.");
 			return false;
 		}
 
@@ -435,7 +441,7 @@ if ("modify".equals(mode)) {
 		<%
 			}
 		%>
-		params.secondarys = toArray("secondarys");
+		params.secondarys = secondarys; 
 		toRegister(params, addRows8);
 		openLayer();
 		call(url, params, function(data) {
@@ -444,7 +450,15 @@ if ("modify".equals(mode)) {
 				<%if (!StringUtils.isNull(toid)) {%>
 				opener._reload();
 				<%} else {%>
-				opener.loadGridData();
+				
+				if (window.opener) {
+				    // 부모 창의 loadGridData 함수가 존재하는지 확인합니다.
+				    if (typeof window.opener.loadGridData === 'function') {
+				    	opener.loadGridData();
+				    } else {
+				    	opener.document.location.reload();
+				    }
+				}
 				<%}%>
 				self.close();
 			} else {

@@ -19,6 +19,7 @@
 					</div>
 				</td>
 				<td class="right">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="등록" title="등록" class="blue" onclick="create();">
 				</td>
 			</tr>
@@ -358,6 +359,23 @@
 				AUIGrid.resize(columns2);
 				AUIGrid.resize(columns3);
 			})
+			
+			document.addEventListener('DOMContentLoaded', (event) => {
+			    document.body.tabIndex = -1; // body 요소에 포커스를 설정하기 위해 tabIndex를 설정
+			    document.body.focus(); // body 요소에 포커스 설정
+			});
+
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab20");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

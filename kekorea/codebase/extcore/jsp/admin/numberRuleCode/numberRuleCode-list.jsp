@@ -22,6 +22,7 @@ JSONArray jsonList = (JSONArray) request.getAttribute("jsonList");
 		<table class="button-table">
 			<tr>
 				<td class="right">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="저장" class="blue" id="saveBtn" title="저장" onclick="save()">
 					<input type="button" value="행 추가" class="" id="addRowBtn" title="추가" onclick="addRow();">
 					<input type="button" value="행 삭제" class="red" id="deleteRowBtn" title="삭제" onclick="deleteRow()">
@@ -326,6 +327,17 @@ JSONArray jsonList = (JSONArray) request.getAttribute("jsonList");
 
 	window.addEventListener("resize", function() {
 		AUIGrid.resize(myGridID);
+	});
+	
+	window.addEventListener('keydown', function(event) {
+		if (event.key === 'F5') {
+			event.preventDefault();
+			const tab = parent.document.getElementById("tab43");
+			if (tab != null) {
+				const iframe = tab.querySelector('iframe');
+				iframe.src = iframe.src;
+			}
+		}
 	});
 </script>
 </html>

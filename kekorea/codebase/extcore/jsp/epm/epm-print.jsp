@@ -36,6 +36,7 @@ a#link {
 		<table class="button-table">
 			<tr>
 				<td class="left">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="도면 추가" class="blue" title="도면 추가" onclick="attach();">
 					<input type="button" value="도면 삭제" title="도면 삭제" onclick="deleteRow();">
 				</td>
@@ -251,6 +252,17 @@ a#link {
 				$("form").submit();
 				newwin.focus();
 			}
+
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab18");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 		<a id="link"></a>
 	</form>

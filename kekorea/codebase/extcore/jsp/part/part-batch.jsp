@@ -32,6 +32,7 @@
 			<tr>
 
 				<td class="right">
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 					<input type="button" value="행 추가" title="행 추가" class="" onclick="addLastRow();">
 					<input type="button" value="행 삭제" title="행 삭제" class="red" onclick="deleteRow();">
 					<input type="button" value="저장" title="저장" onclick="save()" style="background-color: navy;">
@@ -379,6 +380,17 @@
 				}
 				return true; // 기본 행위 유지
 			}
+			
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab22");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>

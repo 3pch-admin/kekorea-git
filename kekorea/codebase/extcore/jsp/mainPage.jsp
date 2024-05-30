@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script type="text/javascript" src="/Windchill/extcore/js/tab.js?v=11"></script>
 <script type="text/javascript">
+
+
 	function updateHeader() {
 		parent.updateWorkData();
 		parent.updateWorkspace();

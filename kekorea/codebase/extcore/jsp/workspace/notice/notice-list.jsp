@@ -1,9 +1,9 @@
 <%@page import="wt.org.WTUser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-boolean isAdmin = (boolean) request.getAttribute("isAdmin");
-boolean isSupervisor = (boolean) request.getAttribute("isSupervisor");
-WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
+	boolean isAdmin = (boolean) request.getAttribute("isAdmin");
+	boolean isSupervisor = (boolean) request.getAttribute("isSupervisor");
+	WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -65,7 +65,7 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('notice-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('notice-list');">
 					<!--  <img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test1.mp4');">-->
-
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 				</td>
 				<td class="right">
 					<input type="button" value="등록" title="등록" class="blue" onclick="create();">
@@ -286,6 +286,17 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 
 			window.addEventListener("resize", function() {
 				AUIGrid.resize(myGridID);
+			});
+
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab1");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
 			});
 
 			function gridResize() {

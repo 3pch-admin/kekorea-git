@@ -43,6 +43,7 @@ String end = (String) request.getAttribute("end");
 					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('progress-list');">
 					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('progress-list');">
 					<!--  <img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test.mp4');"> -->
+					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
 				</td>
 				<td class="right">
 					<input type="button" value="결재 초기화" title="결재 초기화" style="background-color: orange;" onclick="_reset();" class="blue">
@@ -232,15 +233,18 @@ String end = (String) request.getAttribute("end");
 				const hh = window.innerHeight; //834
 				AUIGrid.resize(myGridID, ww - 15, hh - 140);
 			}
-			// 			function gridResize(){
-			// 				const ww = window.innerWidth;	//1654
-			// 				const hh = window.innerHeight;	//834
-			// 				//4row 15, 200
-			// 				//3row 15, 160
-			// 				//2row 15, 140
-			// 				//popup 15, 50
-			// 				AUIGrid.resize(myGridID, ww-15, hh-100);
-			// 			}
+			
+
+			window.addEventListener('keydown', function(event) {
+				if (event.key === 'F5') {
+					event.preventDefault();
+					const tab = parent.document.getElementById("tab5");
+					if (tab != null) {
+						const iframe = tab.querySelector('iframe');
+						iframe.src = iframe.src;
+					}
+				}
+			});
 		</script>
 	</form>
 </body>
