@@ -1218,13 +1218,16 @@ public class ProjectHelper {
 		int state = ProjectHelper.manager.ganttState(project);
 		// state
 		gantt.append("\"state\": \"" + state + "\",");
-		gantt.append("\"text\": \"" + project.getKekNumber() + "-" + project.getPType() + "\",");
+		gantt.append("\"text\": \"" + project.getKekNumber() + "-" + project.getProjectType().getName() + "\",");
+//		gantt.append("\"text\": \"" + project.getKekNumber() + "-" + project.getPType() + "\",");
 
 		float progress = (float) getKekProgress(project) / 100;
 
 		gantt.append("\"progress\": \"" + StringUtils.numberFormat(progress, "#.##") + "\",");
 		gantt.append("\"taskType\": \"\",");
 		gantt.append("\"parent\": \"0\",");
+
+		System.out.println("list=" + list.size());
 
 		if (list.size() == 0) {
 			gantt.append("\"open\": false");
@@ -1368,10 +1371,10 @@ public class ProjectHelper {
 
 		sc = new SearchCondition(Task.class, "parentTaskReference.key.id", "=", 0L);
 		query.appendWhere(sc, new int[] { idx });
-		query.appendAnd();
-
-		sc = new SearchCondition(Task.class, Task.DEPTH, "=", 1);
-		query.appendWhere(sc, new int[] { idx });
+//		query.appendAnd();
+//
+//		sc = new SearchCondition(Task.class, Task.DEPTH, "=", 1);
+//		query.appendWhere(sc, new int[] { idx });
 
 		ClassAttribute ca = new ClassAttribute(Task.class, Task.SORT);
 		OrderBy orderBy = new OrderBy(ca, false);
