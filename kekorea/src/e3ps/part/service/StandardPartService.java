@@ -10,6 +10,7 @@ import java.util.Map;
 import e3ps.bom.partlist.PartListData;
 import e3ps.common.content.service.CommonContentHelper;
 import e3ps.common.util.CommonUtils;
+import e3ps.common.util.ContentUtils;
 import e3ps.common.util.IBAUtils;
 import e3ps.common.util.QuerySpecUtils;
 import e3ps.doc.WTDocumentWTPartLink;
@@ -21,6 +22,7 @@ import e3ps.workspace.ApprovalMaster;
 import e3ps.workspace.service.WorkspaceHelper;
 import wt.clients.folder.FolderTaskLogic;
 import wt.content.ApplicationData;
+import wt.content.ContentHelper;
 import wt.content.ContentRoleType;
 import wt.content.ContentServerHelper;
 import wt.doc.WTDocument;
@@ -217,23 +219,53 @@ public class StandardPartService extends StandardManager implements PartService 
 
 	@Override
 	public void modify(Map<String, Object> params) throws Exception {
+		String oid = (String) params.get("oid");
 		String name = (String) params.get("name");
-		String state = (String) params.get("state");
-//		String oid = (String) params.get("oid");
-		System.out.println(name + "======================" + state);
+		ArrayList<String> primarys = (ArrayList<String>) params.get("primarys");
 		Transaction trs = new Transaction();
 		try {
 			trs.start();
-			WTPart part = WTPart.newWTPart();
-			part.setName(name);
-			PersistenceHelper.manager.save(part);
 
-			QueryResult result = PersistenceHelper.manager.navigate(part, "WTPart", WTDocumentWTPartLink.class, false);
-			while (result.hasMoreElements()) {
-				WTDocumentWTPartLink link = (WTDocumentWTPartLink) result.nextElement();
-				PersistenceHelper.manager.delete(link);
+			WTPart part = (WTPart) CommonUtils.getObject(oid);
+
+			QueryResult qr = ContentHelper.service.getContentsByRole(part, ContentRoleType.PRIMARY);
+			if (qr.hasMoreElements()) {
+				ApplicationData data = (ApplicationData) qr.nextElement();
+				ContentServerHelper.service.deleteContent(part, data);
 			}
 
+			qr.reset();
+			qr = ContentHelper.service.getContentsByRole(part, ContentRoleType.SECONDARY);
+			if (qr.hasMoreElements()) {
+				ApplicationData data = (ApplicationData) qr.nextElement();
+				ContentServerHelper.service.deleteContent(part, data);
+			}
+
+			for (int i = 0; i < primarys.size(); i++) {
+				String cacheId = (String) primarys.get(i);
+				File vault = CommonContentHelper.manager.getFileFromCacheId(cacheId);
+				ApplicationData applicationData = ApplicationData.newApplicationData(part);
+				if (i == 0) {
+					applicationData.setRole(ContentRoleType.PRIMARY);
+				} else {
+					applicationData.setRole(ContentRoleType.SECONDARY);
+				}
+				PersistenceHelper.manager.save(applicationData);
+				ContentServerHelper.service.updateContent(part, applicationData, vault.getPath());
+			}
+
+//			WTPart part = WTPart.newWTPart();
+
+//			PersistenceHelper.manager.save(part);
+
+//			QueryResult result = PersistenceHelper.manager.navigate(part, "WTPart", WTDocumentWTPartLink.class, false);
+//			while (result.hasMoreElements()) {
+//				WTDocumentWTPartLink link = (WTDocumentWTPartLink) result.nextElement();
+//				PersistenceHelper.manager.delete(link);
+//			}
+
+			trs.commit();
+			trs = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			trs.rollback();

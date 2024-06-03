@@ -434,7 +434,6 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 				AUIGrid.resize(myGridID);
 				AUIGrid.resize(_myGridID);
 				selectbox("state");
-				selectbox("state");
 				finderUser("creator");
 				finderUser("modifier");
 				twindate("created");

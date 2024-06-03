@@ -100,6 +100,14 @@ String creoViewURL = dto.getCreoViewURL();
 				</td>
 			</tr>
 			<tr>
+				<th class="lb">첨부파일</th>
+				<td class="indent5" colspan="4">
+					<jsp:include page="/extcore/jsp/common/secondary-view.jsp">
+						<jsp:param value="<%=dto.getOid()%>" name="oid" />
+					</jsp:include>
+				</td>
+			</tr>			
+			<tr>
 				<th class="lb">관련문서</th>
 				<td colspan="4">
 					<div id="_grid_wrap" style="height: 120px; border-top: 1px solid #3180c3; margin: 5px;"></div>
