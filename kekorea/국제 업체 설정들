@@ -252,3 +252,6 @@
 	- AUIGrid 라이센스, tomcat/conf/Catalina/localhost/Windchill.xml, HTTPServer/conf/httpd.conf
 	- 그외 수동으로 변경하는 파일은 이클립스에서 관리
 	
+25. 라이프사이클 가져오기
+	- loadFiles -> lifecycle -> 기초.jar 파일
+	- 사이트 -> 유틸리티 -> 라이프사이클 템플릿 관리 -> 가져오기 실행

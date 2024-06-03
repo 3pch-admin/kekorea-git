@@ -244,7 +244,7 @@ ul, ol {
 		String dataFields = dd.get(i);%>
 				{
 					dataField : "<%=dataFields%>",
-					headerText : "사양<%=i%>",
+					headerText : "사양<%=index%>",
 					dataType : "string",
 					width : 250,
 					renderer : {
@@ -252,6 +252,7 @@ ul, ol {
 					},
 				}, 
 	<%
+	index++;
 	}
 	%> 
 	{
@@ -450,7 +451,7 @@ ul, ol {
 	}
 
 	
-	let toIndex = 1;
+	let toIndex = <%=(index+1)%>;
 	function toAppend() {
 		const dataField = "spec" + toIndex;
 		var columnObj = {
@@ -462,10 +463,7 @@ ul, ol {
 				type : "Templaterenderer"
 			}
 		};
-		
 		const aa = AUIGrid.getColumnInfoList(myGridID, "note");
-		
-		//AUIGrid.addColumn(myGridID, columnObj, "selectionRight");
 		AUIGrid.addColumn(myGridID, columnObj, aa.length-3);
 		toIndex++;
 	}
