@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<!DOCTYPE NmLoader SYSTEM "standardX26.dtd">
+<NmLoader>
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths />
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD</csvdisplay_name>
+		<csvdescription />
+		<csvdata_type>org</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>
+		</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<!-- START -->
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>APPROVED</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>APPROVED</csvdisplay_name>
+		<csvdescription>APPROVED</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>APPROVED</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_CODE</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_CODE</csvdisplay_name>
+		<csvdescription>CAD_CODE</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_CODE</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_COUNT</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_COUNT</csvdisplay_name>
+		<csvdescription>CAD_COUNT</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_COUNT</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_CUSTOMER</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_CUSTOMER</csvdisplay_name>
+		<csvdescription>CAD_CUSTOMER</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_CUSTOMER</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_HIKE</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_HIKE</csvdisplay_name>
+		<csvdescription>CAD_HIKE</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_HIKE</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_KEK</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_KEK</csvdisplay_name>
+		<csvdescription>CAD_KEK</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_KEK</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_MAKER</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_MAKER</csvdisplay_name>
+		<csvdescription>CAD_MAKER</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_MAKER</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_U</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_U</csvdisplay_name>
+		<csvdescription>CAD_U</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_U</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_UNIT</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_UNIT</csvdisplay_name>
+		<csvdescription>CAD_UNIT</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_UNIT</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CAD_WON</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CAD_WON</csvdisplay_name>
+		<csvdescription>CAD_WON</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CAD_WON</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CHECKED</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CHECKED</csvdisplay_name>
+		<csvdescription>CHECKED</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CHECKED</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CURRNAME</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CURRNAME</csvdisplay_name>
+		<csvdescription>CURRNAME</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CURRNAME</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>CUSTNAME</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>CUSTNAME</csvdisplay_name>
+		<csvdescription>CUSTNAME</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>CUSTNAME</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>DAY</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>DAY</csvdisplay_name>
+		<csvdescription>DAY</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>DAY</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>DRAWN</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>DRAWN</csvdisplay_name>
+		<csvdescription>DRAWN</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>DRAWN</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>DSGN_ENGR</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>DSGN_ENGR</csvdisplay_name>
+		<csvdescription>DSGN_ENGR</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>DSGN_ENGR</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>DWG_No</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>DWG_No</csvdisplay_name>
+		<csvdescription>DWG_No</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>DWG_No</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>EQPT_Name</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>EQPT_Name</csvdisplay_name>
+		<csvdescription>EQPT_Name</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>EQPT_Name</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>JUDGED</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>JUDGED</csvdisplay_name>
+		<csvdescription>JUDGED</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>JUDGED</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>LOT_E</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>LOT_E</csvdisplay_name>
+		<csvdescription>LOT_E</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>LOT_E</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>Model</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>Model</csvdisplay_name>
+		<csvdescription>Model</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>Model</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>MONTH</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>MONTH</csvdisplay_name>
+		<csvdescription>MONTH</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>MONTH</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>PART_CODE</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>PART_CODE</csvdisplay_name>
+		<csvdescription>PART_CODE</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>PART_CODE</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>Model</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>Model</csvdisplay_name>
+		<csvdescription>Model</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>Model</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>PRICE</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>PRICE</csvdisplay_name>
+		<csvdescription>PRICE</csvdescription>
+		<csvdata_type>integer</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>PRICE</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>REF_NO</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>REF_NO</csvdisplay_name>
+		<csvdescription>REF_NO</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>REF_NO</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>Rev</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>Rev</csvdisplay_name>
+		<csvdescription>Rev</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>Rev</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>TITLE1</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>TITLE1</csvdisplay_name>
+		<csvdescription>TITLE1</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>TITLE1</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>TITLE2</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>TITLE2</csvdisplay_name>
+		<csvdescription>TITLE2</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>TITLE2</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>UNIT_Name</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>UNIT_Name</csvdisplay_name>
+		<csvdescription>UNIT_Name</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>UNIT_Name</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+
+	<csvAttrDefinizer handler="wt.iba.definition.DefinitionLoaderWithCache.createAttrDefinizer">
+		<csvname>DWG_NO</csvname>
+		<csvhierarchyDisplayName />
+		<csvorganizerPaths>CAD</csvorganizerPaths>
+		<csvdefinitionPaths />
+		<csvdisplay_name>DWG_NO</csvdisplay_name>
+		<csvdescription>DWG_NO</csvdescription>
+		<csvdata_type>string</csvdata_type>
+		<csvQoMName />
+		<csvnameValuePairs />
+		<csvlogicalIdentifier>DWG_NO</csvlogicalIdentifier>
+	</csvAttrDefinizer>
+</NmLoader>

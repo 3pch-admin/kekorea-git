@@ -6,9 +6,9 @@
     <Property name="wt.auth.form.enabled" overridable="true"
                  targetFile="codebase/wt.properties"
                  value="true"/>
-    <Property name="wt.auth.handler" overridable="true"
+    <Property name="wt.auth.handlers" overridable="true"
                  targetFile="codebase/wt.properties"
-                 value="wt.httpgw.HTTPAuthentication"/>             
+                 value="wt.auth.NullAuthentication,wt.httpgw.HTTPAuthentication"/>             
    
     <!-- Vault -->
     <Property name="wt.fv.useVaultsForAllContent" overridable="true"

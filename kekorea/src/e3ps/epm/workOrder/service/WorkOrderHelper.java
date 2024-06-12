@@ -371,6 +371,8 @@ public class WorkOrderHelper {
 		QuerySpecUtils.toEqualsAnd(first, idx1, EPMDocument.class, EPMDocument.DOC_TYPE, "CADDRAWING");
 //		QuerySpecUtils.toIBALikeAnd(first, EPMDocument.class, idx1, "DWG_NO", number);
 		QuerySpecUtils.queryLikeNumber(first, EPMDocument.class, idx1, number);
+		System.out.println("qs=" + first);
+
 		QueryResult qr = PersistenceHelper.manager.find(first);
 		System.out.println("first = " + qr.size());
 		if (qr.hasMoreElements()) {
