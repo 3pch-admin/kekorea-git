@@ -2255,4 +2255,63 @@ public class ProjectHelper {
 		}
 		return JSONArray.fromObject(list);
 	}
+
+	/**
+	 * @메소드명 :
+	 * @최초 작성자 :
+	 * @최초 작성일 : 2024. 06. 24
+	 * @설명 :
+	 */
+	public String getFirstMDate(Project p) throws Exception {
+		String str = "";
+		QuerySpec query = new QuerySpec();
+		int idx = query.appendClassList(PartListMaster.class, true);
+		int idx_link = query.appendClassList(PartListMasterProjectLink.class, false);
+		int idx_p = query.appendClassList(Project.class, false);
+
+		QuerySpecUtils.toInnerJoin(query, PartListMaster.class, PartListMasterProjectLink.class,
+				WTAttributeNameIfc.ID_NAME, "roleAObjectRef.key.id", idx, idx_link);
+		QuerySpecUtils.toInnerJoin(query, Project.class, PartListMasterProjectLink.class, WTAttributeNameIfc.ID_NAME,
+				"roleBObjectRef.key.id", idx_p, idx_link);
+		QuerySpecUtils.toEqualsAnd(query, idx_link, PartListMasterProjectLink.class, "roleBObjectRef.key.id", p);
+		QuerySpecUtils.toIn(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "기계_1차_수배");
+		QuerySpecUtils.toOrderBy(query, idx, PartListMaster.class, PartListMaster.CREATE_TIMESTAMP, false);
+		QueryResult qr = PersistenceHelper.manager.find(query);
+		if (qr.hasMoreElements()) {
+			Object[] obj = (Object[]) qr.nextElement();
+			PartListMaster pm = (PartListMaster) obj[0];
+			str = pm.getCreateTimestamp().toString().substring(0, 10);
+		}
+		return str;
+	}
+
+	/**
+	 * 
+	 * @메소드명 :
+	 * @최초 작성자 :
+	 * @최초 작성일 : 2024. 06. 24
+	 * @설명 :
+	 */
+	public String getFirstEDate(Project p) throws Exception {
+		String str = "";
+		QuerySpec query = new QuerySpec();
+		int idx = query.appendClassList(PartListMaster.class, true);
+		int idx_link = query.appendClassList(PartListMasterProjectLink.class, false);
+		int idx_p = query.appendClassList(Project.class, false);
+
+		QuerySpecUtils.toInnerJoin(query, PartListMaster.class, PartListMasterProjectLink.class,
+				WTAttributeNameIfc.ID_NAME, "roleAObjectRef.key.id", idx, idx_link);
+		QuerySpecUtils.toInnerJoin(query, Project.class, PartListMasterProjectLink.class, WTAttributeNameIfc.ID_NAME,
+				"roleBObjectRef.key.id", idx_p, idx_link);
+		QuerySpecUtils.toEqualsAnd(query, idx_link, PartListMasterProjectLink.class, "roleBObjectRef.key.id", p);
+		QuerySpecUtils.toIn(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "전기_1차_수배");
+		QuerySpecUtils.toOrderBy(query, idx, PartListMaster.class, PartListMaster.CREATE_TIMESTAMP, false);
+		QueryResult qr = PersistenceHelper.manager.find(query);
+		if (qr.hasMoreElements()) {
+			Object[] obj = (Object[]) qr.nextElement();
+			PartListMaster pm = (PartListMaster) obj[0];
+			str = pm.getCreateTimestamp().toString().substring(0, 10);
+		}
+		return str;
+	}
 }

@@ -74,6 +74,9 @@ public class ProjectDTO {
 	private String template_txt;
 
 	private int progress;
+	
+	private String firstMdate;
+	private String firstEdate;
 
 	public ProjectDTO() {
 
@@ -192,5 +195,8 @@ public class ProjectDTO {
 		}
 		setProgress(project.getProgress());
 //		setProgress(ProjectHelper.manager.getKekProgress(project));
+		
+		setFirstEdate(ProjectHelper.manager.getFirstMDate(project));
+		setFirstEdate(ProjectHelper.manager.getFirstEDate(project));
 	}
 }
