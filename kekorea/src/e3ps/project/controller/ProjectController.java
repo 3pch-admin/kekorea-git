@@ -74,7 +74,7 @@ public class ProjectController extends BaseController {
 		WTUser sessionUser = (WTUser) SessionHelper.manager.getPrincipal();
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -4);
+		calendar.add(Calendar.MONTH, -3);
 		Timestamp date = new Timestamp(calendar.getTime().getTime());
 		String before = date.toString().substring(0, 10);
 		String end = DateUtils.getCurrentTimestamp().toString().substring(0, 10);
