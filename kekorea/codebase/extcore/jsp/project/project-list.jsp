@@ -5,22 +5,20 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	ArrayList<Map<String, String>> customers = (ArrayList<Map<String, String>>) request
-			.getAttribute("customers");
-	ArrayList<Map<String, String>> maks = (ArrayList<Map<String, String>>) request.getAttribute("maks");
-	ArrayList<Map<String, String>> projectTypes = (ArrayList<Map<String, String>>) request
-			.getAttribute("projectTypes");
-	ArrayList<HashMap<String, String>> list = (ArrayList<HashMap<String, String>>) request.getAttribute("list");
-	boolean isAdmin = (boolean) request.getAttribute("isAdmin");
-	WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
-	String before = (String) request.getAttribute("before");
-	String end = (String) request.getAttribute("end");
-	JSONArray machines = (JSONArray) request.getAttribute("machines");
-	JSONArray elecs = (JSONArray) request.getAttribute("elecs");
-	JSONArray softs = (JSONArray) request.getAttribute("softs");
-	JSONArray maksJson = (JSONArray) request.getAttribute("maksJson");
-	JSONArray customersJson = (JSONArray) request.getAttribute("customersJson");
-	JSONArray projectTypesJson = JSONArray.fromObject(projectTypes);
+ArrayList<Map<String, String>> customers = (ArrayList<Map<String, String>>) request.getAttribute("customers");
+ArrayList<Map<String, String>> maks = (ArrayList<Map<String, String>>) request.getAttribute("maks");
+ArrayList<Map<String, String>> projectTypes = (ArrayList<Map<String, String>>) request.getAttribute("projectTypes");
+ArrayList<HashMap<String, String>> list = (ArrayList<HashMap<String, String>>) request.getAttribute("list");
+boolean isAdmin = (boolean) request.getAttribute("isAdmin");
+WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
+String before = (String) request.getAttribute("before");
+String end = (String) request.getAttribute("end");
+JSONArray machines = (JSONArray) request.getAttribute("machines");
+JSONArray elecs = (JSONArray) request.getAttribute("elecs");
+JSONArray softs = (JSONArray) request.getAttribute("softs");
+JSONArray maksJson = (JSONArray) request.getAttribute("maksJson");
+JSONArray customersJson = (JSONArray) request.getAttribute("customersJson");
+JSONArray projectTypesJson = JSONArray.fromObject(projectTypes);
 %>
 <!DOCTYPE html>
 <html>
@@ -44,14 +42,10 @@
 <%@include file="/extcore/jsp/common/script.jsp"%>
 <%@include file="/extcore/jsp/common/aui/auigrid.jsp"%>
 </head>
-<body style="overflow: hidden;">
+<body style="overflow-x: hidden;">
 	<form>
-		<input type="hidden" name="isAdmin" id="isAdmin" value="<%=isAdmin%>">
-		<input type="hidden" name="sessionName" id="sessionName" value="<%=sessionUser.getFullName()%>">
-		<input type="hidden" name="sessionId" id="sessionId" value="<%=sessionUser.getName()%>">
-		<input type="hidden" name="sessionid" id="sessionid">
-		<input type="hidden" name="lastNum" id="lastNum">
-		<input type="hidden" name="curPage" id="curPage">
+		<input type="hidden" name="isAdmin" id="isAdmin" value="<%=isAdmin%>"> <input type="hidden" name="sessionName" id="sessionName" value="<%=sessionUser.getFullName()%>"> <input type="hidden" name="sessionId" id="sessionId" value="<%=sessionUser.getName()%>"> <input
+			type="hidden" name="sessionid" id="sessionid"> <input type="hidden" name="lastNum" id="lastNum"> <input type="hidden" name="curPage" id="curPage">
 
 		<table class="search-table">
 			<colgroup>
@@ -66,29 +60,18 @@
 			</colgroup>
 			<tr>
 				<th>KEK 작번</th>
-				<td class="indent5">
-					<input type="text" name="kekNumber" id="kekNumber">
-				</td>
+				<td class="indent5"><input type="text" name="kekNumber" id="kekNumber"></td>
 				<th>KE 작번</th>
-				<td class="indent5">
-					<input type="text" name="keNumber" id="keNumber">
-				</td>
+				<td class="indent5"><input type="text" name="keNumber" id="keNumber"></td>
 				<th>발행일</th>
-				<td class="indent5">
-					<input type="text" name="pdateFrom" id="pdateFrom" class="width-100" value="<%=before%>">
-					~
-					<input type="text" name="pdateTo" id="pdateTo" class="width-100" value="<%=end%>">
-					<img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearFromTo('pdateFrom', 'pdateTo')">
-				</td>
+				<td class="indent5"><input type="text" name="pdateFrom" id="pdateFrom" class="width-100" value="<%=before%>"> ~ <input type="text" name="pdateTo" id="pdateTo" class="width-100" value="<%=end%>"> <img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제"
+					onclick="clearFromTo('pdateFrom', 'pdateTo')"></td>
 				<th>USER ID</th>
-				<td class="indent5">
-					<input type="text" name="userId" id="userId">
-				</td>
+				<td class="indent5"><input type="text" name="userId" id="userId"></td>
 			</tr>
 			<tr>
 				<th>작번 상태</th>
-				<td class="indent5">
-					<select name="kekState" id="kekState" class="width-200">
+				<td class="indent5"><select name="kekState" id="kekState" class="width-200">
 						<option value="">선택</option>
 						<option value="준비">준비</option>
 						<option value="설계중">설계중</option>
@@ -96,118 +79,84 @@
 						<option value="작업완료">작업완료</option>
 						<option value="중단됨">중단됨</option>
 						<option value="취소">취소</option>
-					</select>
-				</td>
+				</select></td>
 				<th>모델</th>
-				<td class="indent5">
-					<input type="text" name="model" id="model">
-				</td>
+				<td class="indent5"><input type="text" name="model" id="model"></td>
 				<th>거래처</th>
-				<td class="indent5">
-					<select name="customer_name" id="customer_name" class="width-200">
+				<td class="indent5"><select name="customer_name" id="customer_name" class="width-200">
 						<option value="">선택</option>
 						<%
-							for (Map customer : customers) {
+						for (Map customer : customers) {
 						%>
 						<option value="<%=customer.get("key")%>"><%=customer.get("value")%></option>
 						<%
-							}
+						}
 						%>
-					</select>
-				</td>
+				</select></td>
 				<th>설치장소</th>
-				<td class="indent5">
-					<select name="install_name" id="install_name" class="width-200">
+				<td class="indent5"><select name="install_name" id="install_name" class="width-200">
 						<option value="">선택</option>
-					</select>
-				</td>
+				</select></td>
 			</tr>
 			<tr>
 				<th>작번 유형</th>
-				<td class="indent5">
-					<select name="projectType" id="projectType" class="width-200">
+				<td class="indent5"><select name="projectType" id="projectType" class="width-200">
 						<option value="">선택</option>
 						<%
-							for (Map projectType : projectTypes) {
+						for (Map projectType : projectTypes) {
 						%>
 						<option value="<%=projectType.get("key")%>"><%=projectType.get("value")%></option>
 						<%
-							}
+						}
 						%>
-					</select>
-				</td>
+				</select></td>
 				<th>기계 담당자</th>
-				<td class="indent5">
-					<input type="text" name="machine" id="machine" data-multi="false">
-					<input type="hidden" name="machineOid" id="machineOid">
-					<img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('machine');">
-				</td>
+				<td class="indent5"><input type="text" name="machine" id="machine" data-multi="false"> <input type="hidden" name="machineOid" id="machineOid"> <img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('machine');"></td>
 				<th>전기 담당자</th>
-				<td class="indent5">
-					<input type="text" name="elec" id="elec" data-multi="false">
-					<input type="hidden" name="elecOid" id="elecOid">
-					<img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('elec');">
-				</td>
+				<td class="indent5"><input type="text" name="elec" id="elec" data-multi="false"> <input type="hidden" name="elecOid" id="elecOid"> <img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('elec');"></td>
 				<th>SW 담당자</th>
-				<td class="indent5">
-					<input type="text" name="soft" id="soft" data-multi="false">
-					<input type="hidden" name="softOid" id="softOid">
-					<img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('soft');">
-				</td>
+				<td class="indent5"><input type="text" name="soft" id="soft" data-multi="false"> <input type="hidden" name="softOid" id="softOid"> <img src="/Windchill/extcore/images/delete.png" class="delete" title="삭제" onclick="clearUser('soft');"></td>
 			</tr>
 			<tr>
 				<th>막종</th>
-				<td class="indent5">
-					<select name="mak_name" id="mak_name" class="width-200">
+				<td class="indent5"><select name="mak_name" id="mak_name" class="width-200">
 						<option value="">선택</option>
 						<%
-							for (Map<String, String> map : maks) {
-								String oid = map.get("key");
-								String name = map.get("value");
+						for (Map<String, String> map : maks) {
+							String oid = map.get("key");
+							String name = map.get("value");
 						%>
 						<option value="<%=oid%>"><%=name%></option>
 						<%
-							}
+						}
 						%>
-					</select>
-				</td>
+				</select></td>
 				<th>막종상세</th>
-				<td class="indent5">
-					<select name="detail_name" id="detail_name" class="width-200">
+				<td class="indent5"><select name="detail_name" id="detail_name" class="width-200">
 						<option value="">선택</option>
-					</select>
-				</td>
+				</select></td>
 				<th>템플릿</th>
-				<td class="indent5">
-					<select name="template" id="template" class="width-200">
+				<td class="indent5"><select name="template" id="template" class="width-200">
 						<option value="">선택</option>
 						<%
-							for (Map<String, String> map : list) {
-								String oid = map.get("key");
-								String name = map.get("value");
+						for (Map<String, String> map : list) {
+							String oid = map.get("key");
+							String name = map.get("value");
 						%>
 						<option value="<%=oid%>"><%=name%></option>
 						<%
-							}
+						}
 						%>
-					</select>
-				</td>
+				</select></td>
 				<th>작업 내용</th>
-				<td colspan="3" class="indent5">
-					<input type="text" name="description" id="description" class="width-200">
-				</td>
+				<td colspan="3" class="indent5"><input type="text" name="description" id="description" class="width-200"></td>
 			</tr>
 		</table>
 
 		<table class="button-table">
 			<tr>
-				<td class="left">
-					<img src="/Windchill/extcore/images/fileicon/file_excel.gif" title="엑셀 다운로드" onclick="exportExcel();">
-					<img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('project-list');">
-					<img src="/Windchill/extcore/images/redo.gif" title="테이블 초기화" onclick="resetColumnLayout('project-list');">
-					<input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();">
-					<!--<img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test1.mp4');"> -->
-					<!--  <input type="button" value="저장" title="저장" onclick="save();">-->
+				<td class="left"><img src="/Windchill/extcore/images/fileicon/file_excel.gif" title="엑셀 다운로드" onclick="exportExcel();"> <img src="/Windchill/extcore/images/save.gif" title="테이블 저장" onclick="saveColumnLayout('project-list');"> <img src="/Windchill/extcore/images/redo.gif"
+					title="테이블 초기화" onclick="resetColumnLayout('project-list');"> <input type="button" value="새로고침" title="새로고침" style="background-color: navy;" onclick="document.location.reload();"> <!--<img src="/Windchill/extcore/images/help.gif" title="메뉴얼 재생" onclick="play('test1.mp4');"> --> <!--  <input type="button" value="저장" title="저장" onclick="save();">-->
 					<select name="step" id="step" class="width-100">
 						<option value="">선택</option>
 						<option value="1">1</option>
@@ -216,13 +165,8 @@
 						<option value="4">4</option>
 						<option value="5">5</option>
 						<option value="6">전체</option>
-					</select>
-					<input type="button" value="완료" title="완료" class="blue" onclick="_complete();">
-				</td>
-				<td class="right">
-					<input type="button" value="등록" title="등록" class="blue" onclick="create();">
-					<input type="button" value="조회" title="조회" style="background-color: navy;" onclick="loadGridData();">
-				</td>
+				</select> <input type="button" value="완료" title="완료" class="blue" onclick="_complete();"></td>
+				<td class="right"><input type="button" value="등록" title="등록" class="blue" onclick="create();"> <input type="button" value="조회" title="조회" style="background-color: navy;" onclick="loadGridData();"></td>
 			</tr>
 		</table>
 
@@ -809,8 +753,8 @@
 // 						return retStr == "" ? value : retStr;
 // 					},
 				}, {
-					dataField : "totalPrice",
-					headerText : "작번 견적 금액",
+					dataField : "outputTotalPrice",
+					headerText : "작번 TOTAL 금액",
 					dataType : "numeric",
 					width : 130,
 					formatString : "#,##0",
@@ -821,8 +765,18 @@
 					},
 					editable : false
 				}, {
-					dataField : "machinePrice",
-					headerText : "기계 견적 금액",
+					dataField : "firstMdate",
+					headerText : "기계1차 수배일",
+					dataType : "string",
+					width : 100,
+					style : "center",
+					filter : {
+						showIcon : true,
+						inline : true
+					},					
+				}, {
+					dataField : "outputMachinePrice",
+					headerText : "기계 TOTAL 금액",
 					dataType : "numeric",
 					width : 130,
 					formatString : "#,##0",
@@ -836,8 +790,18 @@
 						inline : true
 					},
 				}, {
-					dataField : "elecPrice",
-					headerText : "전기 견적 금액",
+					dataField : "firstEdate",
+					headerText : "전기1차 수배일",
+					dataType : "string",
+					width : 100,
+					style : "center",
+					filter : {
+						showIcon : true,
+						inline : true
+					},				
+				},{
+					dataField : "outputElecPrice",
+					headerText : "전기 TOTAL 금액",
 					dataType : "numeric",
 					width : 130,
 					formatString : "#,##0",
@@ -880,6 +844,7 @@
 
 			function createAUIGrid(columnLayout) {
 				const props = {
+					autoGridHeight : true,
 					<%if (isAdmin) {%>
 					showRowCheckColumn : true,
 					<%}%>

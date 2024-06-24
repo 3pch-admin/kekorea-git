@@ -14,6 +14,7 @@
 <%
 OutputDTO dto = (OutputDTO) request.getAttribute("dto");
 String mode = (String) request.getAttribute("mode");
+boolean req = dto.getLocation().contains("공용");
 String title = "";
 if ("modify".equals(mode)) {
 	title = "수정";
@@ -166,11 +167,18 @@ System.out.println(request.getAttribute("dto")+" : $$$$$$$$$$$$$$$$$$$$$$$$$$ : 
 // 			return false;
 // 		}
 
+		<%
+			if(!req) {
+		%>
 		if (addRows9.length === 0) {
 			alert("하나 이상의 작번이 추가되어야 합니다.");
 			insert9();
 			return false;
 		}
+		
+		<%
+			}
+		%>
 
 		if (primarys.length === 0) {
 			alert("첨부파일을 선택하세요.");
