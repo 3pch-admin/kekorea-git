@@ -196,7 +196,7 @@ public class ProjectDTO {
 		setProgress(project.getProgress());
 //		setProgress(ProjectHelper.manager.getKekProgress(project));
 		
-		setFirstEdate(ProjectHelper.manager.getFirstMDate(project));
+		setFirstMdate(ProjectHelper.manager.getFirstMDate(project));
 		setFirstEdate(ProjectHelper.manager.getFirstEDate(project));
 	}
 }

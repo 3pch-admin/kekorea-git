@@ -2257,8 +2257,8 @@ public class ProjectHelper {
 	}
 
 	/**
-	 * @메소드명 :
-	 * @최초 작성자 :
+	 * @메소드명 : 
+	 * @최초 작성자 : 
 	 * @최초 작성일 : 2024. 06. 24
 	 * @설명 :
 	 */
@@ -2274,7 +2274,7 @@ public class ProjectHelper {
 		QuerySpecUtils.toInnerJoin(query, Project.class, PartListMasterProjectLink.class, WTAttributeNameIfc.ID_NAME,
 				"roleBObjectRef.key.id", idx_p, idx_link);
 		QuerySpecUtils.toEqualsAnd(query, idx_link, PartListMasterProjectLink.class, "roleBObjectRef.key.id", p);
-		QuerySpecUtils.toIn(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "기계_1차_수배");
+		QuerySpecUtils.toEqualsAnd(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "기계_1차_수배");
 		QuerySpecUtils.toOrderBy(query, idx, PartListMaster.class, PartListMaster.CREATE_TIMESTAMP, false);
 		QueryResult qr = PersistenceHelper.manager.find(query);
 		if (qr.hasMoreElements()) {
@@ -2287,8 +2287,8 @@ public class ProjectHelper {
 
 	/**
 	 * 
-	 * @메소드명 :
-	 * @최초 작성자 :
+	 * @메소드명 : 
+	 * @최초 작성자 : 
 	 * @최초 작성일 : 2024. 06. 24
 	 * @설명 :
 	 */
@@ -2304,7 +2304,7 @@ public class ProjectHelper {
 		QuerySpecUtils.toInnerJoin(query, Project.class, PartListMasterProjectLink.class, WTAttributeNameIfc.ID_NAME,
 				"roleBObjectRef.key.id", idx_p, idx_link);
 		QuerySpecUtils.toEqualsAnd(query, idx_link, PartListMasterProjectLink.class, "roleBObjectRef.key.id", p);
-		QuerySpecUtils.toIn(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "전기_1차_수배");
+		QuerySpecUtils.toEqualsAnd(query, idx, PartListMaster.class, PartListMaster.ENG_TYPE, "전기_1차_수배");
 		QuerySpecUtils.toOrderBy(query, idx, PartListMaster.class, PartListMaster.CREATE_TIMESTAMP, false);
 		QueryResult qr = PersistenceHelper.manager.find(query);
 		if (qr.hasMoreElements()) {

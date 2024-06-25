@@ -42,7 +42,7 @@ JSONArray projectTypesJson = JSONArray.fromObject(projectTypes);
 <%@include file="/extcore/jsp/common/script.jsp"%>
 <%@include file="/extcore/jsp/common/aui/auigrid.jsp"%>
 </head>
-<body style="overflow-x: hidden;">
+<body style="overflow: hidden;">
 	<form>
 		<input type="hidden" name="isAdmin" id="isAdmin" value="<%=isAdmin%>"> <input type="hidden" name="sessionName" id="sessionName" value="<%=sessionUser.getFullName()%>"> <input type="hidden" name="sessionId" id="sessionId" value="<%=sessionUser.getName()%>"> <input
 			type="hidden" name="sessionid" id="sessionid"> <input type="hidden" name="lastNum" id="lastNum"> <input type="hidden" name="curPage" id="curPage">
@@ -844,7 +844,6 @@ JSONArray projectTypesJson = JSONArray.fromObject(projectTypes);
 
 			function createAUIGrid(columnLayout) {
 				const props = {
-					autoGridHeight : true,
 					<%if (isAdmin) {%>
 					showRowCheckColumn : true,
 					<%}%>
@@ -1052,7 +1051,8 @@ JSONArray projectTypesJson = JSONArray.fromObject(projectTypes);
 			})
 
 			window.addEventListener("resize", function() {
-				AUIGrid.resize(myGridID);
+// 				AUIGrid.resize(myGridID);
+				gridResize();
 			});
 			function gridResize(){
 				//1636-629
