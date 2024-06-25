@@ -341,9 +341,9 @@ public class StandardProjectService extends StandardManager implements ProjectSe
 		try {
 			trs.start();
 
-			System.out.println("==============>project : "+project);
+			System.out.println("==============>project : " + project);
 			int kekProgress = ProjectHelper.manager.getKekProgress(project);
-			System.out.println("==============>kekProgress : "+kekProgress);
+			System.out.println("==============>kekProgress : " + kekProgress);
 			// 완료 되었을 경우...
 			if (kekProgress == 100) {
 				project.setState(ProjectStateVariable.COMPLETE);
@@ -429,8 +429,10 @@ public class StandardProjectService extends StandardManager implements ProjectSe
 			if (edit) {
 				project.setPlanStartDate(start);
 				project.setPlanEndDate(end);
-				duration = DateUtils.getDuration(start, end);
-				project.setDuration(duration);
+//				duration = DateUtils.getDuration(start, end);
+				Template temp = project.getTemplate();
+//				project.setDuration(duration);
+				project.setDuration(temp.getDuration());
 			}
 
 			// ???있어야 하나..
@@ -728,7 +730,7 @@ public class StandardProjectService extends StandardManager implements ProjectSe
 		Transaction trs = new Transaction();
 		try {
 			trs.start();
-			System.out.println("======729line  oid의 값 :  : "+ oid + "========");
+			System.out.println("======729line  oid의 값 :  : " + oid + "========");
 			Project project = (Project) CommonUtils.getObject(oid);
 
 			// 산출물 정의
@@ -748,14 +750,14 @@ public class StandardProjectService extends StandardManager implements ProjectSe
 
 			// 태스크
 			qr.reset();
-			System.out.println("====749 project 의 값 : "+project+"==========");
+			System.out.println("====749 project 의 값 : " + project + "==========");
 			qr = PersistenceHelper.manager.navigate(project, "task", TaskProjectLink.class);
-			System.out.println("====751 qr 의 값 : "+qr+"==========");
+			System.out.println("====751 qr 의 값 : " + qr + "==========");
 			while (qr.hasMoreElements()) {
 				Task task = (Task) qr.nextElement();
-				System.out.println("==========refresh전  task 값 : "+ task +"==========");
-				task = (Task)PersistenceHelper.manager.refresh(task);
-				System.out.println("==========refresh후 task 값 : "+ task +"==========");
+				System.out.println("==========refresh전  task 값 : " + task + "==========");
+				task = (Task) PersistenceHelper.manager.refresh(task);
+				System.out.println("==========refresh후 task 값 : " + task + "==========");
 				PersistenceHelper.manager.delete(task);
 			}
 

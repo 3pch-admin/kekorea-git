@@ -206,7 +206,7 @@ public class StandardTemplateService extends StandardManager implements Template
 //			template.setPlanStartDate(start);
 //			template.setPlanEndDate(end);
 //			duration = DateUtils.getDuration(start, end);
-			template.setDuration(du);
+//			template.setDuration(du);
 //		}
 		PersistenceHelper.manager.modify(template);
 	}
@@ -244,7 +244,7 @@ public class StandardTemplateService extends StandardManager implements Template
 				Task task = (Task) CommonUtils.getObject(oid);
 				PersistenceHelper.manager.delete(task);
 			}
-			commit(template);
+//			commit(template);
 
 			trs.commit();
 			trs = null;
