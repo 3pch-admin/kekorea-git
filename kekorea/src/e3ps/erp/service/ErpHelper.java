@@ -491,7 +491,7 @@ public class ErpHelper {
 
 			con = DBCPManager.getConnection("erp");
 			st = con.createStatement();
-//			con = dataSource.getConnection();
+			con = dataSource.getConnection();
 //			st = con.createStatement();
 //			con.setAutoCommit(false);
 
