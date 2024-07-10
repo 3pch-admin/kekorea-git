@@ -296,7 +296,8 @@ public class StandardPartService extends StandardManager implements PartService 
 
 				File vault = CommonContentHelper.manager.getFileFromCacheId(cacheId);
 				ApplicationData applicationData = ApplicationData.newApplicationData(part);
-				applicationData.setRole(ContentRoleType.PRIMARY);
+//				applicationData.setRole(ContentRoleType.PRIMARY);
+				applicationData.setRole(ContentRoleType.SECONDARY);
 				PersistenceHelper.manager.save(applicationData);
 				ContentServerHelper.service.updateContent(part, applicationData, vault.getPath());
 
