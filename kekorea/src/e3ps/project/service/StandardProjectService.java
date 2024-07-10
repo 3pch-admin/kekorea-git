@@ -429,10 +429,15 @@ public class StandardProjectService extends StandardManager implements ProjectSe
 			if (edit) {
 				project.setPlanStartDate(start);
 				project.setPlanEndDate(end);
-//				duration = DateUtils.getDuration(start, end);
+//				
 				Template temp = project.getTemplate();
-//				project.setDuration(duration);
-				project.setDuration(temp.getDuration());
+//				
+				if (temp != null) {
+					project.setDuration(temp.getDuration());
+				} else {
+					duration = DateUtils.getDuration(start, end);
+					project.setDuration(duration);
+				}
 			}
 
 			// ???있어야 하나..

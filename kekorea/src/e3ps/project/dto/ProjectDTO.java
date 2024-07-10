@@ -163,7 +163,8 @@ public class ProjectDTO {
 		if (project.getStartDate() != null) {
 			setStartDate_txt(CommonUtils.getPersistableTime(project.getStartDate()));
 		}
-		setDuration(DateUtils.getDuration(project.getPlanStartDate(), project.getPlanEndDate()));
+		//setDuration(DateUtils.getDuration(project.getPlanStartDate(), project.getPlanEndDate()));
+		setDuration(project.getDuration());
 		setHoliday(DateUtils.getPlanDurationHoliday(project.getPlanStartDate(), project.getPlanEndDate()));
 
 		WTUser pmUser = ProjectHelper.manager.getUserType(project, ProjectUserTypeVariable.PM);

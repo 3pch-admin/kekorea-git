@@ -1,3 +1,8 @@
+<%@page import="wt.fc.QueryResult"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="wt.query.SearchCondition"%>
+<%@page import="wt.query.ClassAttribute"%>
+<%@page import="wt.query.QuerySpec"%>
 <%@page import="e3ps.erp.ErpConnectionPool"%>
 <%@page import="org.apache.commons.dbcp2.BasicDataSource"%>
 <%@page import="e3ps.project.service.ProjectHelper"%>
@@ -13,74 +18,72 @@
 <%@page import="e3ps.project.template.Template"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-String URL = "jdbc:sqlserver://192.168.1.61:1433;databasename=KEK";
-String USERNAME = "plm_e3ps";
-String PASSWORD = "proe2015!";
-int MAX_TOTAL = 100; // 최대 생성 가능한 Connection 수
-int MAX_IDLE = 50; // 최대 유휴 Connection 수
-int MIN_IDLE = 10; // 최소 유휴 Connection 수
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+Timestamp ss = new Timestamp(sdf.parse("2023-06-01").getTime());
+QuerySpec query = new QuerySpec();
+int idx = query.appendClassList(Project.class, true);
 
-BasicDataSource dataSource = new BasicDataSource();
-dataSource.setDriverClassName(DRIVER);
-dataSource.setUrl(URL);
-dataSource.setUsername(USERNAME);
-dataSource.setPassword(PASSWORD);
-dataSource.setMaxTotal(MAX_TOTAL);
-dataSource.setMaxIdle(MAX_IDLE);
-dataSource.setMinIdle(MIN_IDLE);
-out.println(dataSource.getConnection());
+SearchCondition sc = new SearchCondition(Project.class, Project.CREATE_TIMESTAMP, SearchCondition.GREATER_THAN_OR_EQUAL,
+		ss);
+query.appendWhere(sc, new int[] { idx });
+QueryResult qr = PersistenceHelper.manager.find(query);
+int a=0;
+while (qr.hasMoreElements()) {
+	Object[] obj = (Object[]) qr.nextElement();
+	Project project = (Project) obj[0];
+	// String oid = "e3ps.project.Project:145667379";
+	// String reference = "e3ps.project.template.Template:95023513";
+	// Project project = (Project) CommonUtils.getObject(oid);
+	Template template = project.getTemplate();
+	System.out.println("진행중="+a);
+	a++;
+	if (template != null) {
 
-// String oid = "e3ps.project.Project:145667379";
-// String reference = "e3ps.project.template.Template:95023513";
+		Timestamp start = project.getPlanStartDate();
+		project.setPlanStartDate(start);
 
-// Project project = (Project) CommonUtils.getObject(oid);
-// Template template = (Template) CommonUtils.getObject(reference);
+		Calendar eCa = Calendar.getInstance();
+		eCa.setTimeInMillis(start.getTime());
+		eCa.add(Calendar.DATE, template.getDuration());
 
-// Timestamp start = project.getPlanStartDate();
-// project.setPlanStartDate(start);
+		Timestamp end = new Timestamp(eCa.getTime().getTime());
+		project.setPlanEndDate(end);
+		project.setTemplate(template);
 
-// Calendar eCa = Calendar.getInstance();
-// eCa.setTimeInMillis(start.getTime());
-// eCa.add(Calendar.DATE, template.getDuration());
+		project.setDuration(DateUtils.getDuration(start, end));
 
-// Timestamp end = new Timestamp(eCa.getTime().getTime());
-// project.setPlanEndDate(end);
-// project.setTemplate(template);
+		project = (Project) PersistenceHelper.manager.modify(project);
 
-// project.setDuration(DateUtils.getDuration(start, end));
+		ArrayList<Task> list = TemplateHelper.manager.recurciveTask(template);
+		ArrayList<Task> plist = ProjectHelper.manager.recurciveTask(project);
+		for (int i = 0; i < list.size(); i++) {
+	Task tTask = (Task) list.get(i);
 
-// project = (Project) PersistenceHelper.manager.modify(project);
+	for (int j = 0; j < plist.size(); j++) {
+		Task pTask = (Task) plist.get(j);
 
-// ArrayList<Task> list = TemplateHelper.manager.recurciveTask(template);
-// ArrayList<Task> plist = ProjectHelper.manager.recurciveTask(project);
-// for (int i = 0; i < list.size(); i++) {
-// 	Task tTask = (Task) list.get(i);
+		if (tTask.getName().equals(pTask.getName())) {
+// 			out.println("변경전 이름 = " + pTask.getName() + " / " + pTask.getPlanStartDate() + " / "
+// 					+ pTask.getPlanEndDate() + "<br>");
 
-// 	for (int j = 0; j < plist.size(); j++) {
-// 		Task pTask = (Task) plist.get(j);
+			Timestamp tStart = pTask.getPlanStartDate();
+			Calendar tCa = Calendar.getInstance();
+			tCa.setTimeInMillis(tStart.getTime());
+			tCa.add(Calendar.DATE, tTask.getDuration());
 
-// 		if (tTask.getName().equals(pTask.getName())) {
-// 	out.println("변경전 이름 = " + pTask.getName() + " / " + pTask.getPlanStartDate() + " / "
-// 			+ pTask.getPlanEndDate() + "<br>");
+			Timestamp pEnd = new Timestamp(tCa.getTime().getTime());
+			pTask.setDuration(tTask.getDuration());
+			pTask.setPlanEndDate(pEnd);
 
-// 	Timestamp tStart = pTask.getPlanStartDate();
-// 	Calendar tCa = Calendar.getInstance();
-// 	tCa.setTimeInMillis(tStart.getTime());
-// 	tCa.add(Calendar.DATE, tTask.getDuration());
-
-// 	Timestamp pEnd = new Timestamp(tCa.getTime().getTime());
-// 	pTask.setDuration(tTask.getDuration());
-// 	pTask.setPlanEndDate(pEnd);
-
-// 	PersistenceHelper.manager.modify(pTask);
-// 	out.println("<br>");
-// 	out.println("변경후 이름 = " + pTask.getName() + " / " + pTask.getPlanStartDate() + " / "
-// 			+ pTask.getPlanEndDate() + "<br>");
-// 	out.println("<br>");
-// 		}
-
-// 	}
-// }
+			PersistenceHelper.manager.modify(pTask);
+// 			out.println("<br>");
+// 			out.println("변경후 이름 = " + pTask.getName() + " / " + pTask.getPlanStartDate() + " / "
+// 					+ pTask.getPlanEndDate() + "<br>");
+// 			out.println("<br>");
+		}
+	}
+		}
+	}
+}
 out.println("계산 종료!");
 %>

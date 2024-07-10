@@ -291,13 +291,13 @@ select {
 						<%
 							if (!dto.isEstimate()) {
 						%>
-						<th class="rb">작번 견적 금액</th>
+						<th class="rb">작번 TOTAL 금액</th>
 						<th class="rb">
-							기계 견적 금액&nbsp;
+							기계 TOTAL 금액&nbsp;
 							<img src="/Windchill/extcore/images/edit.gif" class="edit" onclick="money('<%=inputOutputMachine%>', 'm');">
 						</th>
 						<th class="rb">
-							전기 견적 금액&nbsp;
+							전기 TOTAL 금액&nbsp;
 							<img src="/Windchill/extcore/images/edit.gif" class="edit" onclick="money('<%=inputOutputElec%>', 'e');">
 						</th>
 						<%
@@ -434,7 +434,7 @@ select {
 							type : 'column'
 						},
 						title : {
-							text : '작번 견적 금액 차트(수배표/입력)',
+							text : '작번 TOTAL 금액 차트(수배표/입력)',
 						},
 						subtitle : {
 							text : "<%=dto.getKekNumber()%> / <%=dto.getKeNumber()%>",
@@ -447,7 +447,7 @@ select {
 							useHTML : true
 						},
 						xAxis : {
-							categories : [ '작번 견적 금액(수배표)', '작번 견적 금액(입력)' ],
+							categories : [ '작번 TOTAL 금액(수배표)', '작번 TOTAL 금액(입력)' ],
 							crosshair : true
 						},
 						yAxis : {
@@ -470,21 +470,21 @@ select {
 							useHTML : true
 						},
 						series : [ {
-							name : '작번 견적 금액',
+							name : '작번 TOTAL 금액',
 							data : [
 				<%=dto.getOutputTotalPrice()%>
 					,
 				<%=dto.getTotalPrice()%>
 					]
 						}, {
-							name : '기계 견적 금액',
+							name : '기계 TOTAL 금액',
 							data : [
 				<%=dto.getOutputMachinePrice()%>
 					,
 				<%=dto.getMachinePrice()%>
 					]
 						}, {
-							name : '전기 견적 금액',
+							name : '전기 TOTAL 금액',
 							data : [
 				<%=dto.getOutputElecPrice()%>
 					,
