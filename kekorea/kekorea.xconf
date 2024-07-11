@@ -102,6 +102,19 @@
       <Property name="kekJob.scheduledProcessorClass" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="e3ps.project.schedule.KEKScheduleProcessor"/>
+                   
+	  <Property name="jobTypes7" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="partListJob"/>      
+      <Property name="kekJob.icon" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="netmarkets/images/repair_failure.gif"/>   
+      <Property name="kekJob.resourceBase" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="com.ptc.wvs.common.util.JobTypeResource"/>   
+      <Property name="kekJob.scheduledProcessorClass" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="e3ps.project.schedule.PartListScheduleProcessor"/>                   
              
       <!-- Add Schedule List -->
       <Property name="schedulejobs30" overridable="true"
@@ -122,4 +135,23 @@
       <Property name="KEK_PROJECT_SCHEDULE_BATCH.method" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="startBatch"/> 
+                   
+	  <Property name="schedulejobs31" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="KEK_PROJECT_PARTLIST_BATCH"/>   
+      <Property name="KEK_PROJECT_PARTLIST_BATCH.class" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="e3ps.project.schedule.PartListScheduleJobs"/>
+      <Property name="KEK_PROJECT_PARTLIST_BATCH.description" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="KEK_PROJECT_PARTLIST_BATCH"/>
+      <Property name="KEK_PROJECT_PARTLIST_BATCH.enableOnContainers" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="true"/>
+      <Property name="KEK_PROJECT_PARTLIST_BATCH.jobType" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="partListJob"/>   
+      <Property name="KEK_PROJECT_PARTLIST_BATCH.method" overridable="true"
+                   targetFile="codebase/WEB-INF/conf/wvs.properties"
+                   value="startBatch"/>                    
 </Configuration>
