@@ -67,4 +67,7 @@ public final class JobTypeResource extends WTListResourceBundle {
 
 	@RBEntry("KEK PROJECT SCHEDULE")
 	public static final String kekJob = "kekJob";
+	
+	@RBEntry("KEK PARTLIST SCHEDULE")
+	public static final String partListJob = "partListJob";
 }
