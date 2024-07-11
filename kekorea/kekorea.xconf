@@ -106,13 +106,13 @@
 	  <Property name="jobTypes7" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="partListJob"/>      
-      <Property name="kekJob.icon" overridable="true"
+      <Property name="partListJob.icon" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="netmarkets/images/repair_failure.gif"/>   
-      <Property name="kekJob.resourceBase" overridable="true"
+      <Property name="partListJob.resourceBase" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="com.ptc.wvs.common.util.JobTypeResource"/>   
-      <Property name="kekJob.scheduledProcessorClass" overridable="true"
+      <Property name="partListJob.scheduledProcessorClass" overridable="true"
                    targetFile="codebase/WEB-INF/conf/wvs.properties"
                    value="e3ps.project.schedule.PartListScheduleProcessor"/>                   
              
