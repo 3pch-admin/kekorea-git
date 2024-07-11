@@ -256,13 +256,13 @@ public class StandardPartlistService extends StandardManager implements Partlist
 				String oid = (String) addRow9.get("oid");
 				Project project = (Project) CommonUtils.getObject(oid);
 
-				if ("기계".equals(engType)) {
+				if ("기계".equals(engType) || "기계_1차_수배".equals(engType) || "기계_2차_수배".equals(engType)) {
 					double outputMachinePrice = project.getOutputMachinePrice() != null
 							? project.getOutputMachinePrice()
 							: 0D;
 					outputMachinePrice += totalPrice;
 					project.setOutputMachinePrice(outputMachinePrice);
-				} else if ("전기".equals(engType)) {
+				} else if ("전기".equals(engType) || "전기_1차_수배".equals(engType) || "전기_2차_수배".equals(engType)) {
 					double outputElecPrice = project.getOutputElecPrice() != null ? project.getOutputElecPrice() : 0D;
 					outputElecPrice += totalPrice;
 					project.setOutputElecPrice(outputElecPrice);
