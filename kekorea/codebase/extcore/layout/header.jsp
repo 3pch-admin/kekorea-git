@@ -142,7 +142,7 @@ Map<String, Integer> count = (Map<String, Integer>) request.getAttribute("count"
 <!-- 						<a onclick="moveToPage(this, '/workOrder/list', '> 도면 관리 > 도면일람표 조회');">도면일람표 조회</a> -->
 					</li>
 					<li>
-						<a onclick="tabbar('도면일람표 조회', '/workspace/list', 'tab17');">도면일람표 조회</a>
+						<a onclick="tabbar('도면일람표 조회', '/workspace/list', 'tab17');">도면 결재 조회</a>
 <!-- 						<a onclick="moveToPage(this, '/workspace/list', '> 도면 관리 > 도면 결재 조회')">도면 결재 조회</a> -->
 					</li>
 					<li>

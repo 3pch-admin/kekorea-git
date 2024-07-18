@@ -30,13 +30,14 @@ line.setState(WorkspaceHelper.STATE_AGREE_COMPLETE);
 WTUser user = OrganizationServicesHelper.manager.getUser("20120413");
 line.setCompleteUserID(user.getName());
 System.out.println("???");
-line = (ApprovalLine) PersistenceHelper.manager.modify(line);
-System.out.println("???");
+PersistenceHelper.manager.refresh(line);
+PersistenceHelper.manager.modify(line);
+System.out.println("???!!");
 System.out.println(line);
 
-// boolean isEndAgree = WorkspaceHelper.manager.isEndAgree(master);
-// System.out.println(isEndAgree);
-// if (isEndAgree) {
+boolean isEndAgree = WorkspaceHelper.manager.isEndAgree(master);
+System.out.println(isEndAgree);
+if (isEndAgree) {
 
 
 	System.out.println("???");
@@ -58,6 +59,6 @@ System.out.println(line);
 			PersistenceHelper.manager.modify(master);
 		}
 	}
-// }
+}
 out.println("END!");
 %>
