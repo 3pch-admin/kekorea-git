@@ -45,22 +45,25 @@ public class PartListScheduleJobs {
 
 			System.out.println("계산 되는 작번 번호 = " + pjt.getKekNumber());
 
-			QueryResult qr = PersistenceHelper.manager.navigate(pjt, "master", PartListMasterProjectLink.class, false);
+			QueryResult qr = PersistenceHelper.manager.navigate(pjt, "master", PartListMasterProjectLink.class);
 			double mT = 0D;
 			double eT = 0D;
+			System.out.println("QR 수배표 개수 =" + qr.size());
 			while (qr.hasMoreElements()) {
 				PartListMaster p = (PartListMaster) qr.nextElement();
 				String engType = p.getEngType();
-				if ("기계".equals(engType)) {
-					mT = p.getTotalPrice();
-				} else if ("전기".equals(engType)) {
-					eT = p.getTotalPrice();
+				if ("기계_1차_수배".equals(engType) || "기계_2차_수배".equals(engType)){
+					mT += p.getTotalPrice();
+				} else if ("전기_1차_수배".equals(engType) || "전기_2차_수배".equals(engType)){
+					eT += p.getTotalPrice();
 				}
 			}
+			System.out.println("mT= " + mT + ", eT=" + eT);
 			pjt.setOutputMachinePrice(mT);
 			pjt.setOutputElecPrice(eT);
 			PersistenceHelper.manager.modify(pjt);
 			System.out.println("계산 되는 작번 번호 종료 = " + pjt.getKekNumber());
 		}
+		System.out.println("최종 개수 ="+rs.size());
 	}
 }
