@@ -714,7 +714,7 @@ public class ProjectController extends BaseController {
 		return result;
 	}
 
-	@Description("템플릿 태스크 편집 페이지")
+	@Description("프로젝트 태스크 편집 페이지")
 	@RequestMapping(value = "/openProjectTaskEditor")
 	public ModelAndView openProjectTaskEditor(@RequestParam Map<String, Object> param) throws Exception {
 		ModelAndView model = new ModelAndView();

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import e3ps.admin.commonCode.service.CommonCodeHelper;
 import e3ps.common.controller.BaseController;
 import e3ps.common.util.CommonUtils;
+import e3ps.project.service.ProjectHelper;
 import e3ps.project.task.Task;
 import e3ps.project.task.dto.TaskDTO;
 import e3ps.project.template.Template;
@@ -213,5 +214,19 @@ public class TemplateController extends BaseController {
 			result.put("msg", e.toString());
 		}
 		return result;
+	}
+
+	@Description("템플릿 태스크 편집 페이지")
+	@RequestMapping(value = "/openTemplateTaskEditor")
+	public ModelAndView openTemplateTaskEditor(@RequestParam Map<String, Object> param) throws Exception {
+		ModelAndView model = new ModelAndView();
+		String oid = (String) param.get("oid");
+		Template template = (Template) CommonUtils.getObject(oid);
+		String gantt = TemplateHelper.manager.loadGanttTemplate(param);
+		model.setViewName("popup:/project/template/openTemplateTaskEditor");
+		model.addObject("template", template);
+		model.addObject("gantt", gantt);
+		model.addObject("oid", oid);
+		return model;
 	}
 }

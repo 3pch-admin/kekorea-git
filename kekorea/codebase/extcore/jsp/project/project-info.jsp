@@ -239,7 +239,7 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 						break;
 					case 6:
 						const url = "/Windchill/plm/project/openProjectTaskEditor?oid=<%=oid %>";
-						popup(url, 1600, 800);
+						popup(url, 1700, 1100);
 						break;
 					}
 				}

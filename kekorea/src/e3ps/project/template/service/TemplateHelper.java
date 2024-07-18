@@ -8,9 +8,11 @@ import java.util.Map;
 import e3ps.admin.commonCode.CommonCode;
 import e3ps.admin.commonCode.service.CommonCodeHelper;
 import e3ps.common.util.CommonUtils;
+import e3ps.common.util.DateUtils;
 import e3ps.common.util.PageQueryUtils;
 import e3ps.common.util.QuerySpecUtils;
 import e3ps.common.util.StringUtils;
+import e3ps.project.task.ParentTaskChildTaskLink;
 import e3ps.project.task.TargetTaskSourceTaskLink;
 import e3ps.project.task.Task;
 import e3ps.project.task.service.TaskHelper;
@@ -22,7 +24,10 @@ import net.sf.json.JSONObject;
 import wt.fc.PagingQueryResult;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
+import wt.fc.ReferenceFactory;
 import wt.org.WTUser;
+import wt.query.ClassAttribute;
+import wt.query.OrderBy;
 import wt.query.QuerySpec;
 import wt.query.SearchCondition;
 import wt.services.ServiceFactory;
@@ -244,4 +249,218 @@ public class TemplateHelper {
 			recurciveTask(template, task, list);
 		}
 	}
+
+	/**
+	 * @메소드명 :
+	 * @최초 작성자 :
+	 * @최초 작성일 : 2024. 07. 12
+	 * @설명 :
+	 */
+	public String loadGanttTemplate(Map<String, Object> param) throws Exception {
+		String oid = (String) param.get("oid");
+		ReferenceFactory rf = new ReferenceFactory();
+		Template template = (Template) rf.getReference(oid).getObject();
+
+		ArrayList<Task> list = new ArrayList<Task>();
+
+		list = TemplateHelper.manager.getterTemplateTask(template, list);
+		// list = ProjectHelper.manager.getterProjectNonSchduleTask(project, list);
+
+		// 프로젝트 추가
+
+		StringBuffer gantt = new StringBuffer();
+
+		gantt.append("{\"data\": [");
+
+		// project
+		gantt.append("{");
+
+		gantt.append("\"id\": \"" + template.getPersistInfo().getObjectIdentifier().getStringValue() + "\",");
+		gantt.append("\"type\": \"project\",");
+		gantt.append("\"isNew\": \"false\",");
+		gantt.append("\"start_date\": \"" + DateUtils.formatTime(template.getPlanStartDate()) + "\",");
+		gantt.append("\"end_date\": \"" + DateUtils.formatTime(template.getPlanEndDate()) + "\",");
+
+//		gantt.append("\"state\": \"" + state + "\",");
+		gantt.append("\"text\": \"" + template.getName() + "\",");
+
+		gantt.append("\"taskType\": \"\",");
+		gantt.append("\"parent\": \"0\",");
+
+		System.out.println("list=" + list.size());
+
+		if (list.size() == 0) {
+			gantt.append("\"open\": false");
+			gantt.append("}");
+		} else if (list.size() > 0) {
+			gantt.append("\"open\": true");
+			gantt.append("},");
+
+			for (int i = 0; i < list.size(); i++) {
+				Task tt = (Task) list.get(i);
+
+				gantt.append("{");
+				gantt.append("\"id\": \"" + tt.getPersistInfo().getObjectIdentifier().getStringValue() + "\",");
+				gantt.append("\"text\": \"" + tt.getName() + "\",");
+
+				boolean hasChild = false;
+				QueryResult result = PersistenceHelper.manager.navigate(tt, "childTask", ParentTaskChildTaskLink.class);
+				if (result.size() > 0) {
+					hasChild = true;
+				}
+
+				if (hasChild) {
+					gantt.append("\"type\": \"project\",");
+				} else {
+					gantt.append("\"type\": \"task\",");
+				}
+
+				gantt.append("\"isNew\": \"false\",");
+				gantt.append("\"start_date\": \"" + DateUtils.formatTime(tt.getPlanStartDate()) + "\",");
+				gantt.append("\"end_date\": \"" + DateUtils.formatTime(tt.getPlanEndDate()) + "\",");
+				gantt.append("\"real_start_date\": \"" + DateUtils.formatTime(tt.getStartDate()) + "\",");
+				gantt.append("\"real_end_date\": \"" + DateUtils.formatTime(tt.getEndDate()) + "\",");
+				gantt.append("\"taskType\": \"" + tt.getTaskType().getName() + "\",");
+				gantt.append("\"allocate\": \"" + tt.getAllocate() + "\",");
+
+				float tprogress = (float) tt.getProgress() / 100;
+				gantt.append("\"progress\": \"" + StringUtils.numberFormat(tprogress, "#.##") + "\",");
+				gantt.append(
+						"\"duration\": \"" + DateUtils.getDuration(tt.getPlanStartDate(), tt.getPlanEndDate()) + "\",");
+				if ((list.size() - 1) == i) {
+					if (StringUtils.isNull(tt.getParentTask())) {
+						gantt.append("\"parent\": \"" + template.getPersistInfo().getObjectIdentifier().getStringValue()
+								+ "\",");
+						gantt.append("\"open\": true");
+					} else {
+						gantt.append("\"parent\": \""
+								+ tt.getParentTask().getPersistInfo().getObjectIdentifier().getStringValue() + "\",");
+						gantt.append("\"open\": true");
+					}
+					gantt.append("}");
+				} else {
+					if (StringUtils.isNull(tt.getParentTask())) {
+						gantt.append("\"parent\": \"" + template.getPersistInfo().getObjectIdentifier().getStringValue()
+								+ "\",");
+						gantt.append("\"open\": true");
+					} else {
+						gantt.append("\"parent\": \""
+								+ tt.getParentTask().getPersistInfo().getObjectIdentifier().getStringValue() + "\",");
+						gantt.append("\"open\": true");
+					}
+					gantt.append("},");
+				}
+			}
+		}
+
+		gantt.append("],");
+
+		gantt.append("\"links\": [");
+
+		ArrayList<TargetTaskSourceTaskLink> linkList = getAllTargetList(list);
+
+		for (int i = 0; i < linkList.size(); i++) {
+			TargetTaskSourceTaskLink link = (TargetTaskSourceTaskLink) linkList.get(i);
+			gantt.append("{");
+			gantt.append("\"id\": \"" + link.getPersistInfo().getObjectIdentifier().getStringValue() + "\",");
+			gantt.append("\"source\": \"" + link.getTargetTask().getPersistInfo().getObjectIdentifier().getStringValue()
+					+ "\",");
+			gantt.append("\"target\": \"" + link.getSourceTask().getPersistInfo().getObjectIdentifier().getStringValue()
+					+ "\",");
+
+			gantt.append("\"lag\": \"" + link.getLag() + "\",");
+			gantt.append("\"type\": \"0\",");
+
+			if ((linkList.size() - 1) == i) {
+				gantt.append("}");
+			} else {
+				gantt.append("},");
+			}
+		}
+
+		gantt.append("]");
+		gantt.append("}");
+
+		return gantt.toString();
+	}
+
+	/**
+	 * @메소드명 :
+	 * @최초 작성자 :
+	 * @최초 작성일 : 2024. 07. 12
+	 * @설명 :
+	 */
+	private ArrayList<Task> getterTemplateTask(Template template, ArrayList<Task> list) throws Exception {
+		QuerySpec query = new QuerySpec();
+		int idx = query.appendClassList(Task.class, true);
+		long ids = template.getPersistInfo().getObjectIdentifier().getId();
+		SearchCondition sc = new SearchCondition(Task.class, "templateReference.key.id", "=", ids);
+		query.appendWhere(sc, new int[] { idx });
+		query.appendAnd();
+
+		sc = new SearchCondition(Task.class, "parentTaskReference.key.id", "=", 0L);
+		query.appendWhere(sc, new int[] { idx });
+
+		ClassAttribute ca = new ClassAttribute(Task.class, Task.SORT);
+		OrderBy orderBy = new OrderBy(ca, false);
+		query.appendOrderBy(orderBy, new int[] { idx });
+
+		query.setAdvancedQueryEnabled(true);
+		query.setDescendantQuery(false);
+
+		QueryResult result = PersistenceHelper.manager.find(query);
+
+		while (result.hasMoreElements()) {
+			Object[] obj = (Object[]) result.nextElement();
+			Task t = (Task) obj[0];
+			list.add(t);
+			getterTasks(t, template, list);
+		}
+		return list;
+	}
+
+	public void getterTasks(Task parentTask, Template template, ArrayList<Task> list) throws Exception {
+		QuerySpec query = new QuerySpec();
+		int idx = query.appendClassList(Task.class, true);
+
+		long ids = parentTask.getPersistInfo().getObjectIdentifier().getId();
+		long pids = template.getPersistInfo().getObjectIdentifier().getId();
+
+		SearchCondition sc = new SearchCondition(Task.class, "parentTaskReference.key.id", "=", ids);
+		query.appendWhere(sc, new int[] { idx });
+		query.appendAnd();
+
+		sc = new SearchCondition(Task.class, "templateReference.key.id", "=", pids);
+		query.appendWhere(sc, new int[] { idx });
+
+		ClassAttribute ca = new ClassAttribute(Task.class, Task.SORT);
+		OrderBy orderBy = new OrderBy(ca, false);
+		query.appendOrderBy(orderBy, new int[] { idx });
+
+		QueryResult result = PersistenceHelper.manager.find(query);
+
+		while (result.hasMoreElements()) {
+			Object[] obj = (Object[]) result.nextElement();
+			Task t = (Task) obj[0];
+			list.add(t);
+			getterTasks(t, template, list);
+		}
+	}
+
+	private ArrayList<TargetTaskSourceTaskLink> getAllTargetList(ArrayList<Task> list) throws Exception {
+		ArrayList<TargetTaskSourceTaskLink> lists = new ArrayList<TargetTaskSourceTaskLink>();
+		for (int i = 0; i < list.size(); i++) {
+			Task tt = (Task) list.get(i);
+
+			QueryResult result = PersistenceHelper.manager.navigate(tt, "targetTask", TargetTaskSourceTaskLink.class,
+					false);
+
+			while (result.hasMoreElements()) {
+				TargetTaskSourceTaskLink link = (TargetTaskSourceTaskLink) result.nextElement();
+				lists.add(link);
+			}
+		}
+		return lists;
+	}
+
 }

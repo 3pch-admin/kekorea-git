@@ -16,20 +16,15 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 	<tr>
 		<td class="left">
 			<div class="header">
-				<img src="/Windchill/extcore/images/header.png">
-				템플릿 정보
+				<img src="/Windchill/extcore/images/header.png"> 템플릿 정보
 			</div>
 		</td>
 		<td class="right">
 			<%
 			if (isAdmin) {
-			%>
-			<input type="button" value="수정" title="수정" class="blue" onclick="modify();">
-			<input type="button" value="삭제" title="삭제" class="red" onclick="_delete();">
-			<%
-			}
-			%>
-			<input type="button" value="닫기" title="닫기" onclick="self.close();" style="background-color: navy;">
+			%> <input type="button" value="수정" title="수정" class="blue" onclick="modify();"> <input type="button" value="삭제" title="삭제" class="red" onclick="_delete();"> <%
+ }
+ %> <input type="button" value="닫기" title="닫기" onclick="self.close();" style="background-color: navy;">
 		</td>
 	</tr>
 </table>
@@ -41,90 +36,94 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 	</colgroup>
 	<tr>
 		<td valign="top">
-			<div id="grid_wrap" style="height: 540px; border-top: 1px solid #3180c3;"></div>
-			<script type="text/javascript">
+			<div id="grid_wrap" style="height: 540px; border-top: 1px solid #3180c3;"></div> <script type="text/javascript">
 				let myGridID;
 				const list =
 			<%=list%>
-				const columns = [ {
-					dataField : "name",
-					headerText : "태스크명",
-					dataType : "string",
-				}, {
-					dataField : "duration",
-					headerText : "기간",
-					dataType : "numeric",
-					formatString : "###0",
-					postfix : "일",
-					width : 60,
-					editRenderer : {
-						type : "InputEditRenderer",
-						onlyNumeric : true,
-						maxlength : 3
-					},
-				}, {
-					dataField : "taskType",
-					headerText : "태스크 타입",
-					dataType : "string",
-					width : 80,
-					renderer : {
-						type : "IconRenderer",
-						iconWidth : 16,
-						iconHeight : 16,
-						iconPosition : "aisleRight",
-						iconTableRef : {
-							"default" : "/Windchill/extcore/component/AUIGrid/images/list-icon.png"
+				const columns = [
+						{
+							dataField : "name",
+							headerText : "태스크명",
+							dataType : "string",
 						},
-						onClick : function(event) {
-							AUIGrid.openInputer(event.pid);
-						}
-					},
-					editRenderer : {
-						type : "ComboBoxRenderer",
-						autoCompleteMode : true,
-						autoEasyMode : true,
-						matchFromFirst : false,
-						showEditorBtnOver : false,
-						list : list,
-						keyField : "key",
-						valueField : "value",
-						validator : function(oldValue, newValue, item, dataField, fromClipboard, which) {
-							let isValid = false;
-							for (let i = 0, len = list.length; i < len; i++) {
-								if (list[i]["value"] == newValue) {
-									isValid = true;
-									break;
+						{
+							dataField : "duration",
+							headerText : "기간",
+							dataType : "numeric",
+							formatString : "###0",
+							postfix : "일",
+							width : 60,
+							editRenderer : {
+								type : "InputEditRenderer",
+								onlyNumeric : true,
+								maxlength : 3
+							},
+						},
+						{
+							dataField : "taskType",
+							headerText : "태스크 타입",
+							dataType : "string",
+							width : 80,
+							renderer : {
+								type : "IconRenderer",
+								iconWidth : 16,
+								iconHeight : 16,
+								iconPosition : "aisleRight",
+								iconTableRef : {
+									"default" : "/Windchill/extcore/component/AUIGrid/images/list-icon.png"
+								},
+								onClick : function(event) {
+									AUIGrid.openInputer(event.pid);
 								}
-							}
-							return {
-								"validate" : isValid,
-								"message" : "리스트에 있는 값만 선택(입력) 가능합니다."
-							};
-						}
-					},
-					labelFunction : function(rowIndex, columnIndex, value, headerText, item) {
-						let retStr = "";
-						for (let i = 0, len = list.length; i < len; i++) {
-							if (list[i]["key"] == value) {
-								retStr = list[i]["value"];
-								break;
-							}
-						}
-						return retStr == "" ? value : retStr;
-					},
-				}, {
-					dataField : "allocate",
-					headerText : "할당율",
-					dataType : "numeric",
-					formatString : "###0",
-					postfix : "%",
-					width : 80,
-					editRenderer : {
-						type : "InputEditRenderer",
-						onlyNumeric : true,
-						maxlength : 3
-					},
-				} ]
+							},
+							editRenderer : {
+								type : "ComboBoxRenderer",
+								autoCompleteMode : true,
+								autoEasyMode : true,
+								matchFromFirst : false,
+								showEditorBtnOver : false,
+								list : list,
+								keyField : "key",
+								valueField : "value",
+								validator : function(oldValue, newValue, item,
+										dataField, fromClipboard, which) {
+									let isValid = false;
+									for (let i = 0, len = list.length; i < len; i++) {
+										if (list[i]["value"] == newValue) {
+											isValid = true;
+											break;
+										}
+									}
+									return {
+										"validate" : isValid,
+										"message" : "리스트에 있는 값만 선택(입력) 가능합니다."
+									};
+								}
+							},
+							labelFunction : function(rowIndex, columnIndex,
+									value, headerText, item) {
+								let retStr = "";
+								for (let i = 0, len = list.length; i < len; i++) {
+									if (list[i]["key"] == value) {
+										retStr = list[i]["value"];
+										break;
+									}
+								}
+								return retStr == "" ? value : retStr;
+							},
+						}, {
+							dataField : "allocate",
+							headerText : "할당율",
+							dataType : "numeric",
+							formatString : "###0",
+							postfix : "%",
+							width : 80,
+							editRenderer : {
+								type : "InputEditRenderer",
+								onlyNumeric : true,
+								maxlength : 3
+							},
+						} ]
 
 				function createAUIGrid(columnLayout) {
 					const props = {
@@ -158,13 +157,19 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 						}, {
 							label : "저장",
 							callback : contextItemHandler
+						}, {
+							label : "태스크편집",
+							callback : contextItemHandler
 						} ],
 					}
-					myGridID = AUIGrid.create("#grid_wrap", columnLayout, props);
+					myGridID = AUIGrid
+							.create("#grid_wrap", columnLayout, props);
 					readyHandler();
-					AUIGrid.bind(myGridID, "selectionChange", auiGridSelectionChangeHandler);
+					AUIGrid.bind(myGridID, "selectionChange",
+							auiGridSelectionChangeHandler);
 					AUIGrid.bind(myGridID, "cellEditBegin", auiCellEditBegin);
-					AUIGrid.bind(myGridID, "beforeInsertRow", auiBeforeInsertRow);
+					AUIGrid.bind(myGridID, "beforeInsertRow",
+							auiBeforeInsertRow);
 				}
 
 				function auiBeforeInsertRow(event) {
@@ -213,7 +218,8 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 						addTreeRow(item);
 						break;
 					case 3:
-						const selectedItems = AUIGrid.getSelectedItems(myGridID);
+						const selectedItems = AUIGrid
+								.getSelectedItems(myGridID);
 						if (_$depth === 1) {
 							alert("템플릿은 삭제가 불가능합니다.");
 							return false;
@@ -226,6 +232,10 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					case 5:
 						treeSave();
 						break;
+					case 6:
+						const url = "/Windchill/plm/template/openTemplateTaskEditor?oid=<%=oid %>";
+						popup(url, 1700, 1100);				
+						break;
 					}
 				}
 
@@ -234,7 +244,8 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 						return false;
 					}
 					const data = AUIGrid.getTreeGridData(myGridID);
-					const json = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+					const json = btoa(unescape(encodeURIComponent(JSON
+							.stringify(data))));
 					const removeRows = AUIGrid.getRemovedItems(myGridID);
 					const params = new Object();
 					const url = getCallUrl("/template/treeSave");
@@ -252,7 +263,8 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 				}
 
 				function addRow(item, selection) {
-					const parentItem = AUIGrid.getParentItemByRowId(myGridID, item._$uid);
+					const parentItem = AUIGrid.getParentItemByRowId(myGridID,
+							item._$uid);
 					const parentRowId = parentItem._$uid;
 					const newItem = new Object();
 					newItem.parentRowId = parentRowId;
@@ -261,7 +273,8 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					newItem.allocate = 0;
 					newItem.duration = 1;
 					newItem.taskType = "NORMAL";
-					AUIGrid.addTreeRow(myGridID, newItem, parentRowId, selection);
+					AUIGrid.addTreeRow(myGridID, newItem, parentRowId,
+							selection);
 				}
 
 				function readyHandler() {
@@ -289,13 +302,12 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 					newItem.allocate = 0;
 					newItem.duration = 1;
 					newItem.taskType = "NORMAL";
-					AUIGrid.addTreeRow(myGridID, newItem, parentRowId, "selectionDown");
+					AUIGrid.addTreeRow(myGridID, newItem, parentRowId,
+							"selectionDown");
 				}
 			</script>
 		</td>
-		<td valign="top">
-			<iframe src="/Windchill/plm/template/view?oid=<%=oid%>" style="height: 540px;" id="view"></iframe>
-		</td>
+		<td valign="top"><iframe src="/Windchill/plm/template/view?oid=<%=oid%>" style="height: 540px;" id="view"></iframe></td>
 	</tr>
 </table>
 
@@ -310,7 +322,8 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 			if (item.type == "template") {
 				iframe.src = "/Windchill/plm/template/view?oid=" + oid;
 			} else if (item.type == "task") {
-				iframe.src = "/Windchill/plm/template/task?oid=" + oid + "&toid=" + item.oid;
+				iframe.src = "/Windchill/plm/template/task?oid=" + oid
+						+ "&toid=" + item.oid;
 			}
 			closeLayer();
 		}
@@ -343,8 +356,10 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 		const iframe = document.getElementById("view");
 		const oid = document.getElementById("oid").value;
 		const pmOid = iframe.contentWindow.document.getElementById("pmOid").value;
-		const subPmOid = iframe.contentWindow.document.getElementById("subPmOid").value;
-		const description = iframe.contentWindow.document.getElementById("description").value;
+		const subPmOid = iframe.contentWindow.document
+				.getElementById("subPmOid").value;
+		const description = iframe.contentWindow.document
+				.getElementById("description").value;
 		const params = new Object();
 		const url = getCallUrl("/template/modify");
 		params.oid = oid;

@@ -14,7 +14,6 @@ WTUser sessionUser = (WTUser) request.getAttribute("sessionUser");
 <%@include file="/extcore/jsp/common/css.jsp"%>
 <%@include file="/extcore/jsp/common/script.jsp"%>
 <%@include file="/extcore/jsp/common/aui/auigrid.jsp"%>    
-<script type="text/javascript" src="/Windchill/extcore/js/auigrid.js?v=1010"></script>
 </head>
 <body style="margin: 0px 0px 0px 5px;">
 	<form>
