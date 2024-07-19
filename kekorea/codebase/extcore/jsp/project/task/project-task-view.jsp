@@ -212,8 +212,8 @@ int taskType = (int) request.getAttribute("taskType");
 						</th>
 					</tr>
 					<tr>
-						<td class="center"><%=dto.getPlanEndDate_txt()%></td>
 						<td class="center"><%=dto.getPlanStartDate_txt()%></td>
+						<td class="center"><%=dto.getPlanEndDate_txt()%></td>
 						<td class="center"><%=dto.getStartDate_txt()%></td>
 						<td class="center"><%=dto.getEndDate_txt()%></td>
 						<td class="center"><%=dto.getProgress()%>%
