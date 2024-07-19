@@ -70,6 +70,6 @@
 	<classpathentry kind="lib" path="codebase/WEB-INF/lib/tiles-servlet-3.0.7.jar"/>
 	<classpathentry kind="lib" path="codebase/WEB-INF/lib/tiles-template-3.0.7.jar"/>
 	<classpathentry kind="lib" path="codebase/WEB-INF/lib/tiles-velocity-3.0.7.jar"/>
-	<classpathentry kind="lib" path="D:/ptc/Windchill_11.1/Windchill/codebase/WEB-INF/lib/aspose-pdf-24.6.jar"/>
+	<classpathentry kind="lib" path="D:/kekorea-git/kekorea/codebase/WEB-INF/lib/aspose-pdf-24.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
