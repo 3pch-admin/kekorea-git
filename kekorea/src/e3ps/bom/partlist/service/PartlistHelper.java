@@ -249,7 +249,6 @@ public class PartlistHelper {
 //				map.put("poid", pp.getPersistInfo().getObjectIdentifier().getStringValue());
 //			}		QuerySpec qs = new QuerySpec();
 
-
 			list.add(map);
 		}
 		return JSONArray.fromObject(list);
@@ -335,7 +334,9 @@ public class PartlistHelper {
 	 */
 	public ArrayList<Map<String, Object>> compare(Project p1, ArrayList<Project> destList, String invoke)
 			throws Exception {
-		System.out.println("수배표 비교 START = " + new Timestamp(new Date().getTime()));
+
+		long start = System.currentTimeMillis() / 1000;
+		System.out.println("수배표 비교 START = " + start);
 		ArrayList<Map<String, Object>> list = new ArrayList<>();
 		ArrayList<Map<String, Object>> mergedList = new ArrayList<>();
 		String[] t = null;
@@ -404,31 +405,6 @@ public class PartlistHelper {
 		mergedList.add(pdateList);
 
 		destList.remove(0);
-
-		// ?? 이게 뭐지...
-//		for (int i = 0; i < destList.size(); i++) {
-//			Project project = (Project) destList.get(i);
-//			Map<String, Object> mergedData = new HashMap<>();
-//
-//			String mak = project.getMak() != null ? project.getMak().getName() : "";
-//			String detail = project.getDetail() != null ? project.getDetail().getName() : "";
-//			String customer = project.getCustomer() != null ? project.getCustomer().getName() : "";
-//			String install = project.getInstall() != null ? project.getInstall().getName() : "";
-//
-//			mergedData.put("key", "막종 / 막종상세");
-//			mergedData.put("qty1", mak + " / " + detail);
-//
-//			mergedData.put("key", "고객사 / 설치장소");
-//			mergedData.put("qty1", customer + " / " + install);
-//
-//			mergedData.put("key", "KE 작번");
-//			mergedData.put("qty1", project.getKeNumber());
-//
-//			mergedData.put("key", "발행일");
-//			mergedData.put("qty1", CommonUtils.getPersistableTime(project.getPDate()));
-//
-//			mergedList.add(mergedData);
-//		}
 
 		// list1의 데이터를 먼저 추가
 		for (Map<String, Object> data : list) {
@@ -507,7 +483,8 @@ public class PartlistHelper {
 				}
 			}
 		}
-		System.out.println("수배표 비교 END = " + new Timestamp(new Date().getTime()));
+		long end = System.currentTimeMillis() / 1000;
+		System.out.println("수배표 비교 END = " + end + ", 걸린 시간 = " + (end - start));
 		return mergedList;
 	}
 
@@ -532,6 +509,8 @@ public class PartlistHelper {
 		}
 		QuerySpecUtils.toOrderBy(query, idx, PartListMaster.class, PartListMaster.CREATE_TIMESTAMP, false);
 
+		ArrayList<String> comp = new ArrayList<>();
+
 		QueryResult result = PersistenceHelper.manager.find(query);
 		while (result.hasMoreElements()) {
 			Object[] obj = (Object[]) result.nextElement();
@@ -553,29 +532,56 @@ public class PartlistHelper {
 				MasterDataLink link = (MasterDataLink) oo[0];
 				PartListData data = link.getData();
 				WTPart part = data.getWtPart();
-				Map<String, Object> map = new HashMap<>();
-				map.put("oid", part != null ? part.getPersistInfo().getObjectIdentifier().getStringValue() : "");
-				map.put("engType", master.getEngType());
-				map.put("lotNo", String.valueOf(data.getLotNo()));
-				map.put("unitName", data.getUnitName());
-				map.put("partNo", data.getPartNo());
-				map.put("partName", data.getPartName());
-				map.put("standard", data.getStandard());
-				map.put("maker", data.getMaker());
-				map.put("customer", data.getCustomer());
-				map.put("quantity", data.getQuantity());
-				map.put("unit", data.getUnit());
-				map.put("price", data.getPrice());
-				map.put("currency", data.getCurrency());
-				map.put("won", data.getWon());
-				map.put("partListDate_txt", CommonUtils.getPersistableTime(data.getPartListDate()));
-				map.put("exchangeRate", data.getExchangeRate());
-				map.put("referDrawing", data.getReferDrawing());
-				map.put("classification", data.getClassification());
-				map.put("note", data.getNote());
+
+				String key = data.getPartNo() + "-" + data.getLotNo();
+
+				if (!comp.contains(key)) {
+
+					for (int i = 0; i < list.size(); i++) {
+						Map<String, Object> mm = (Map<String, Object>) list.get(i);
+						String k = (String) mm.get(key);
+
+						if (!StringUtils.isNull(k)) {
+							int qu = (int) mm.get("quantity");
+							mm.put("quantity", qu + data.getQuantity());
+
+							list.remove(i);
+							list.add(mm);
+						}
+					}
+					comp.add(key);
+				} else {
+					Map<String, Object> map = new HashMap<>();
+					map.put("oid", part != null ? part.getPersistInfo().getObjectIdentifier().getStringValue() : "");
+					map.put("engType", master.getEngType());
+					map.put("lotNo", String.valueOf(data.getLotNo()));
+					map.put("unitName", data.getUnitName());
+					map.put("partNo", data.getPartNo());
+					map.put("partName", data.getPartName());
+					map.put("standard", data.getStandard());
+					map.put("maker", data.getMaker());
+					map.put("customer", data.getCustomer());
+					map.put("quantity", data.getQuantity());
+					map.put("unit", data.getUnit());
+					map.put("price", data.getPrice());
+					map.put("currency", data.getCurrency());
+					map.put("won", data.getWon());
+					map.put("partListDate_txt", CommonUtils.getPersistableTime(data.getPartListDate()));
+					map.put("exchangeRate", data.getExchangeRate());
+					map.put("referDrawing", data.getReferDrawing());
+					map.put("classification", data.getClassification());
+					map.put("note", data.getNote());
+					map.put("key", key);
+				}
+
 				list.add(map);
 			}
 		}
+
+		for (Map<String, Object> mm : list) {
+
+		}
+
 		return list;
 	}
 
